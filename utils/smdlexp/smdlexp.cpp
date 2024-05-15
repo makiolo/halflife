@@ -980,7 +980,7 @@ static float FlReduceRotation(float fl)
 // 
 // Parameters:	const char* -- the property
 //				const char* -- the expected value
-//				Interface*	-- the max interface pointer
+//				Interface*	-- the fmax interface pointer
 //
 // Returns:		bool -- true if the property is there and has the
 //						specified value.
@@ -1012,7 +1012,7 @@ bool SmdExportClass::hasStringPropertyValue
 //				Returns 0 (NULL) if not found.
 // 
 // Parameters:	const char* -- the property's name
-//				Interface*	-- the max interface pointer
+//				Interface*	-- the fmax interface pointer
 //
 // Returns:		const PROPVARIANT* -- the property.  Returns 0
 //										(NULL) if not found.

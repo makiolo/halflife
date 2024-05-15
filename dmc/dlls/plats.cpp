@@ -833,7 +833,7 @@ void CFuncTrain :: Activate( void )
 
 /*QUAKED func_train (0 .5 .8) ?
 Trains are moving platforms that players can ride.
-The targets origin specifies the min point of the train at each corner.
+The targets origin specifies the fmin point of the train at each corner.
 The train spawns at the first target it is pointing at.
 If the train is the target of a button or trigger, it will not begin moving until activated.
 speed	default 100
@@ -1091,7 +1091,7 @@ static void FixupAngles( Vector &v )
 
 #define TRAIN_STARTPITCH	60
 #define TRAIN_MAXPITCH		200
-#define TRAIN_MAXSPEED		1000	// approx max speed for sound pitch calculation
+#define TRAIN_MAXSPEED		1000	// approx fmax speed for sound pitch calculation
 
 void CFuncTrackTrain :: StopSound( void )
 {
@@ -1473,7 +1473,7 @@ CFuncTrackTrain *CFuncTrackTrain::Instance( edict_t *pent )
 
 /*QUAKED func_train (0 .5 .8) ?
 Trains are moving platforms that players can ride.
-The targets origin specifies the min point of the train at each corner.
+The targets origin specifies the fmin point of the train at each corner.
 The train spawns at the first target it is pointing at.
 If the train is the target of a button or trigger, it will not begin moving until activated.
 speed	default 100

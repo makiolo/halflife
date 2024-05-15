@@ -83,7 +83,7 @@
  *    effect.periodic.period = 1000; // 1000 ms
  *    effect.periodic.magnitude = 20000; // 20000/32767 strength
  *    effect.periodic.length = 5000; // 5 seconds long
- *    effect.periodic.attack_length = 1000; // Takes 1 second to get max strength
+ *    effect.periodic.attack_length = 1000; // Takes 1 second to get fmax strength
  *    effect.periodic.fade_length = 1000; // Takes 1 second to fade away
  *
  *    // Upload the effect
@@ -690,7 +690,7 @@ typedef struct SDL_HapticCustom
 /**
  *  \brief The generic template for any haptic effect.
  *  
- *  All values max at 32767 (0x7FFF).  Signed values also can be negative.
+ *  All values fmax at 32767 (0x7FFF).  Signed values also can be negative.
  *  Time values unless specified otherwise are in milliseconds.
  *  
  *  You can also pass ::SDL_HAPTIC_INFINITY to length instead of a 0-32767 
@@ -898,7 +898,7 @@ extern DECLSPEC void SDLCALL SDL_HapticClose(SDL_Haptic * haptic);
  *  aproximation.  Always check to see if your created effect was actually
  *  created and do not rely solely on SDL_HapticNumEffects().
  *  
- *  \param haptic The haptic device to query effect max.
+ *  \param haptic The haptic device to query effect fmax.
  *  \return The number of effects the haptic device can store or
  *          -1 on error.
  *  

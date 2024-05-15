@@ -608,8 +608,8 @@ void WriteFile (void)
 	phdr->version = STUDIO_VERSION;
 	strcpy( phdr->name, outname );
 	VectorCopy( eyeposition, phdr->eyeposition );
-	VectorCopy( bbox[0], phdr->min ); 
-	VectorCopy( bbox[1], phdr->max ); 
+	VectorCopy( bbox[0], phdr->fmin );
+	VectorCopy( bbox[1], phdr->fmax );
 	VectorCopy( cbox[0], phdr->bbmin ); 
 	VectorCopy( cbox[1], phdr->bbmax ); 
 

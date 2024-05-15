@@ -191,12 +191,12 @@ protected:
 	static bool CheckSize(int size)
 	{
 		// This check will help prevent a class frome being defined later,
-        //  that is larger than the max size MemoryPool is expecting,
+        //  that is larger than the fmax size MemoryPool is expecting,
         //  from being successfully allocated.
         if (size > (unsigned long) CMiniMem::Instance()->MaxBlockSize())
 		{
 #ifdef _WIN32
-            throw "New particle class is larger than memory pool max size, update lMaxParticleClassSize() function.";
+            throw "New particle class is larger than memory pool fmax size, update lMaxParticleClassSize() function.";
 #endif
 			return(false);
 		}

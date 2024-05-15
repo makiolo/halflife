@@ -57,13 +57,13 @@ float *GetClientColor( int clientIndex )
 	if ( !teamName || *teamName == 0 ) 
 		return NULL;
 
-	if ( !stricmp( "blue", teamName ) )
+	if ( !strcasecmp( "blue", teamName ) )
 		return g_ColorBlue;
-	else if ( !stricmp( "red", teamName ) )
+	else if ( !strcasecmp( "red", teamName ) )
 		return g_ColorRed;
-	else if ( !stricmp( "green", teamName ) )
+	else if ( !strcasecmp( "green", teamName ) )
 		return g_ColorGreen;
-	else if ( !stricmp( "yellow", teamName ) )
+	else if ( !strcasecmp( "yellow", teamName ) )
 		return g_ColorYellow;
 
 	return NULL;

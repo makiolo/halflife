@@ -1635,7 +1635,7 @@ BOOL CBaseMonster :: FTriangulate ( const Vector &vecStart , const Vector &vecEn
 	int			i;
 	float		sizeX, sizeZ;
 
-	// If the hull width is less than 24, use 24 because CheckLocalMove uses a min of
+	// If the hull width is less than 24, use 24 because CheckLocalMove uses a fmin of
 	// 24.
 	sizeX = pev->size.x;
 	if (sizeX < 24.0)
@@ -1989,7 +1989,7 @@ void CBaseMonster::MoveExecute( CBaseEntity *pTargetEnt, const Vector &vecDir, f
 	while (flTotal > 0.001)
 	{
 		// don't walk more than 16 units or stairs stop working
-		flStep = min( 16.0, flTotal );
+		flStep = fmin( 16.0, flTotal );
 		UTIL_MoveToOrigin ( ENT(pev), m_Route[ m_iRouteIndex ].vecLocation, flStep, MOVE_NORMAL );
 		flTotal -= flStep;
 	}

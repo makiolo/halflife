@@ -1391,7 +1391,7 @@ int CSittingScientist :: FIdleSpeak ( void )
 	if (!FOkToSpeak())
 		return FALSE;
 
-	// set global min delay for next conversation
+	// set global fmin delay for next conversation
 	CTalkMonster::g_talkWaitTime = gpGlobals->time + RANDOM_FLOAT(4.8, 5.2);
 
 	pitch = GetVoicePitch();
@@ -1408,7 +1408,7 @@ int CSittingScientist :: FIdleSpeak ( void )
 		
 		IdleHeadTurn(pentFriend->pev->origin);
 		SENTENCEG_PlayRndSz( ENT(pev), m_szGrp[TLK_PQUESTION], 1.0, ATTN_IDLE, 0, pitch );
-		// set global min delay for next conversation
+		// set global fmin delay for next conversation
 		CTalkMonster::g_talkWaitTime = gpGlobals->time + RANDOM_FLOAT(4.8, 5.2);
 		return TRUE;
 	}
@@ -1417,7 +1417,7 @@ int CSittingScientist :: FIdleSpeak ( void )
 	if (RANDOM_LONG(0,1))
 	{
 		SENTENCEG_PlayRndSz( ENT(pev), m_szGrp[TLK_PIDLE], 1.0, ATTN_IDLE, 0, pitch );
-		// set global min delay for next conversation
+		// set global fmin delay for next conversation
 		CTalkMonster::g_talkWaitTime = gpGlobals->time + RANDOM_FLOAT(4.8, 5.2);
 		return TRUE;
 	}

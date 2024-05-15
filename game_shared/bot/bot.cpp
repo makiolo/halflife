@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -270,7 +270,7 @@ void CBot::Reload( void )
 
 //--------------------------------------------------------------------------------------------------------------
 /**
- * Returns ratio of ammo left to max ammo (1 = full clip, 0 = empty)
+ * Returns ratio of ammo left to fmax ammo (1 = full clip, 0 = empty)
  */
 float CBot::GetActiveWeaponAmmoRatio( void ) const
 {

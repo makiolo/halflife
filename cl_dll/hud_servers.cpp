@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -311,7 +311,7 @@ int	CHudServers::CompareServers( server_t *p1, server_t *p2 )
 
 			if ( n1 && n2 )
 			{
-				if ( stricmp( n1, n2 ) < 0 )
+				if ( strcasecmp( n1, n2 ) < 0 )
 					return 1;
 			}
 		}
@@ -602,7 +602,7 @@ int CompareField( CHudServers::server_t *p1, CHudServers::server_t *p2, const ch
 	}
 
 	// String compare
-	return stricmp( sz1, sz2 );
+	return strcasecmp( sz1, sz2 );
 }
 
 int ServerListCompareFunc( CHudServers::server_t *p1, CHudServers::server_t *p2, const char *fieldname )
@@ -793,7 +793,7 @@ int CHudServers::LoadMasterAddresses( int maxservers, int *count, netadr_t *padr
 
 		bIgnore = true;
 
-		if ( !stricmp( m_szToken, "Master" ) )
+		if ( !strcasecmp( m_szToken, "Master" ) )
 		{
 			nDefaultPort = PORT_MASTER;
 			bIgnore = FALSE;
@@ -804,7 +804,7 @@ int CHudServers::LoadMasterAddresses( int maxservers, int *count, netadr_t *padr
 		if ( strlen(m_szToken) <= 0 )
 			break;
 
-		if ( stricmp ( m_szToken, "{" ) )
+		if ( strcasecmp ( m_szToken, "{" ) )
 			break;
 
 		// Parse addresses until we get to "}"
@@ -818,7 +818,7 @@ int CHudServers::LoadMasterAddresses( int maxservers, int *count, netadr_t *padr
 			if (strlen(m_szToken) <= 0)
 				break;
 
-			if ( !stricmp ( m_szToken, "}" ) )
+			if ( !strcasecmp ( m_szToken, "}" ) )
 				break;
 			
 			sprintf( base, "%s", m_szToken );
@@ -828,7 +828,7 @@ int CHudServers::LoadMasterAddresses( int maxservers, int *count, netadr_t *padr
 			if (strlen(m_szToken) <= 0)
 				break;
 
-			if ( stricmp( m_szToken, ":" ) )
+			if ( strcasecmp( m_szToken, ":" ) )
 				break;
 
 			pstart = gEngfuncs.COM_ParseFile( pstart, m_szToken );

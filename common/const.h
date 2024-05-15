@@ -248,7 +248,7 @@
 // short (beam sprite index) 
 // short (end sprite index) 
 
-#define TE_BEAMTORUS		19		// screen aligned beam ring, expands to max radius over lifetime
+#define TE_BEAMTORUS		19		// screen aligned beam ring, expands to fmax radius over lifetime
 // coord coord coord (center position) 
 // coord coord coord (axis and radius) 
 // short (sprite index) 
@@ -261,7 +261,7 @@
 // byte (brightness)
 // byte (scroll speed in 0.1's)
 
-#define TE_BEAMDISK			20		// disk that expands to max radius over lifetime
+#define TE_BEAMDISK			20		// disk that expands to fmax radius over lifetime
 // coord coord coord (center position) 
 // coord coord coord (axis and radius) 
 // short (sprite index) 
@@ -274,7 +274,7 @@
 // byte (brightness)
 // byte (scroll speed in 0.1's)
 
-#define TE_BEAMCYLINDER		21		// cylinder that expands to max radius over lifetime
+#define TE_BEAMCYLINDER		21		// cylinder that expands to fmax radius over lifetime
 // coord coord coord (center position) 
 // coord coord coord (axis and radius) 
 // short (sprite index) 
@@ -350,7 +350,7 @@
 // ushort 8.8  fadeout time
 // ushort 8.8 hold time
 // optional ushort 8.8 fxtime	(time the highlight lags behing the leading text in effect 2)
-// string text message		(512 chars max sz string)
+// string text message		(512 chars fmax sz string)
 #define TE_LINE				30
 // coord, coord, coord		startpos
 // coord, coord, coord		endpos
@@ -448,7 +448,7 @@
 
 #define TE_BUBBLES			113		// create alpha sprites inside of box, float upwards
 // coord, coord, coord (min start position)
-// coord, coord, coord (max start position)
+// coord, coord, coord (fmax start position)
 // coord (float height)
 // short (model index)
 // byte (count)
@@ -456,7 +456,7 @@
 
 #define TE_BUBBLETRAIL		114		// create alpha sprites along a line, float upwards
 // coord, coord, coord (min start position)
-// coord, coord, coord (max start position)
+// coord, coord, coord (fmax start position)
 // coord (float height)
 // short (model index)
 // byte (count)

@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -58,7 +58,7 @@ const float smokeRadius = 115.0f;		///< for smoke grenades
 GameEventType NameToGameEvent( const char *name )
 {
 	for( int i=0; GameEventName[i]; ++i )
-		if (!stricmp( GameEventName[i], name ))
+		if (!strcasecmp( GameEventName[i], name ))
 			return static_cast<GameEventType>( i );
 
 	return EVENT_INVALID;

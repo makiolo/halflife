@@ -60,13 +60,13 @@ float *GetClientColor( int clientIndex )
 	if ( !teamName || *teamName == 0 ) 
 		return g_ColorYellowish;
 
-	if ( !stricmp( "blue", teamName ) )
+	if ( !strcasecmp( "blue", teamName ) )
 		return g_ColorBlue;
-	else if ( !stricmp( "red", teamName ) )
+	else if ( !strcasecmp( "red", teamName ) )
 		return g_ColorRed;
-	else if ( !stricmp( "green", teamName ) )
+	else if ( !strcasecmp( "green", teamName ) )
 		return g_ColorGreen;
-	else if ( !stricmp( "yellow", teamName ) )
+	else if ( !strcasecmp( "yellow", teamName ) )
 		return g_ColorYellow;
 
 	return g_ColorYellowish;
@@ -79,9 +79,9 @@ int GetTeamIndex( int clientIndex )
 	if ( !teamName || *teamName == 0 ) 
 		return NULL;
 
-	if ( !stricmp( "red", teamName ) )
+	if ( !strcasecmp( "red", teamName ) )
 		return 1;
-	else if ( !stricmp( "blue", teamName ) )
+	else if ( !strcasecmp( "blue", teamName ) )
 		return 2;
 
 	return 0;
@@ -129,7 +129,7 @@ int CHudDeathNotice :: Draw( float flTime )
 			continue;
 		}
 
-		rgDeathNoticeList[i].flDisplayTime = min( rgDeathNoticeList[i].flDisplayTime, gHUD.m_flTime + DEATHNOTICE_DISPLAY_TIME );
+		rgDeathNoticeList[i].flDisplayTime = fmin( rgDeathNoticeList[i].flDisplayTime, gHUD.m_flTime + DEATHNOTICE_DISPLAY_TIME );
 
 			// Draw the death notice
 			y = YRES(DEATHNOTICE_TOP) + 2 + (20 * i);  //!!!

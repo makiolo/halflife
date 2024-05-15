@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: New version of the slider bar
 //
@@ -300,26 +300,26 @@ void Slider2::paintBackground()
 	}
 }
 
-void Slider2::setRange(int min,int max)
+void Slider2::setRange(int min,int fmax)
 {
-	if(max<min)
+	if(fmax<min)
 	{
-		max=min;
+		fmax=min;
 	}
 
-	if(min>max)
+	if(min>fmax)
 	{
-		min=max;
+		min=fmax;
 	}
 
 	_range[0]=min;
-	_range[1]=max;
+	_range[1]=fmax;
 }
 
-void Slider2::getRange(int& min,int& max)
+void Slider2::getRange(int& min,int& fmax)
 {
 	min=_range[0];
-	max=_range[1];
+	fmax=_range[1];
 }
 
 void Slider2::privateCursorMoved(int x,int y,Panel* panel)
@@ -414,10 +414,10 @@ void Slider2::privateMouseReleased(MouseCode code,Panel* panel)
 	getApp()->setMouseCapture(null);
 }
 
-void Slider2::getNobPos(int& min, int& max)
+void Slider2::getNobPos(int& min, int& fmax)
 {
 	min=_nobPos[0];
-	max=_nobPos[1];
+	fmax=_nobPos[1];
 }
 
 void Slider2::setRangeWindow(int rangeWindow)

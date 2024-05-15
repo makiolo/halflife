@@ -50,11 +50,11 @@ public:
 	
 	string_t m_iszMonsterClassname;// classname of the monster(s) that will be created.
 	
-	int	 m_cNumMonsters;// max number of monsters this ent can create
+	int	 m_cNumMonsters;// fmax number of monsters this ent can create
 
 	
 	int  m_cLiveChildren;// how many monsters made by this monster maker that are currently alive
-	int	 m_iMaxLiveChildren;// max number of monsters that this maker may have out at one time.
+	int	 m_iMaxLiveChildren;// fmax number of monsters that this maker may have out at one time.
 
 	float m_flGround; // z coord of the ground under me, used to make sure no monsters are under the maker when it drops a new child
 

@@ -83,7 +83,7 @@ typedef unsigned __PTRDIFF_TYPE__ uintptr_t;
 #define HAVE_ATOF	1
 #define HAVE_STRCMP	1
 #define HAVE_STRNCMP	1
-#define HAVE_STRICMP	1
+#define HAVE_strcasecmp	1
 #define HAVE_STRCASECMP	1
 #define HAVE_SSCANF	1
 #define HAVE_SNPRINTF	1

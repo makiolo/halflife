@@ -234,7 +234,7 @@ void Host_Say( edict_t *pEntity, int teamonly )
 	if ( CMD_ARGC() == 0 )
 		return;
 
-	if ( !stricmp( pcmd, cpSay) || !stricmp( pcmd, cpSayTeam ) )
+	if ( !strcasecmp( pcmd, cpSay) || !strcasecmp( pcmd, cpSayTeam ) )
 	{
 		if ( CMD_ARGC() >= 2 )
 		{
@@ -909,7 +909,7 @@ void PlayerCustomization( edict_t *pEntity, customization_t *pCust )
 	switch (pCust->resource.type)
 	{
 	case t_decal:
-		pPlayer->SetCustomDecalFrames(pCust->nUserData2); // Second int is max # of frames.
+		pPlayer->SetCustomDecalFrames(pCust->nUserData2); // Second int is fmax # of frames.
 		break;
 	case t_sound:
 	case t_skin:
@@ -1053,7 +1053,7 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
 	// If pSet is NULL, then the test will always succeed and the entity will be added to the update
 	if ( ent != host )
 	{
-		//We still want to show all ents for a quick period ( max 700ms of lag ) for when we predict teleporters
+		//We still want to show all ents for a quick period ( fmax 700ms of lag ) for when we predict teleporters
 		//if we don't do this, the entities on the other side wont show until the real origin comes thru and reaches
 		//the new PVS/PAS.
 		if ( !ENGINE_CHECK_VISIBILITY( (const struct edict_s *)ent, pSet ) && ent->v.fuser4 < gpGlobals->time )
@@ -1553,9 +1553,9 @@ int GetWeaponData( struct edict_s *player, struct weapon_data_s *info )
 						item->m_iId						= II.iId;
 						item->m_iClip					= gun->m_iClip;
 
-						item->m_flTimeWeaponIdle		= max( gun->m_flTimeWeaponIdle, -0.001 );
-						item->m_flNextPrimaryAttack		= max( gun->m_flNextPrimaryAttack, -0.001 );
-						item->m_flNextSecondaryAttack	= max( gun->m_flNextSecondaryAttack, -0.001 );
+						item->m_flTimeWeaponIdle		= fmax( gun->m_flTimeWeaponIdle, -0.001 );
+						item->m_flNextPrimaryAttack		= fmax( gun->m_flNextPrimaryAttack, -0.001 );
+						item->m_flNextSecondaryAttack	= fmax( gun->m_flNextSecondaryAttack, -0.001 );
 						item->m_fInReload				= gun->m_fInReload;
 					}
 				}
@@ -1705,7 +1705,7 @@ void CmdEnd ( const edict_t *player )
 ================================
 ConnectionlessPacket
 
- Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the max
+ Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the fmax
   size of the response_buffer, so you must zero it out if you choose not to respond.
 ================================
 */

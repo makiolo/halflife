@@ -214,7 +214,7 @@ struct kbutton_s CL_DLLEXPORT *KB_Find( const char *name )
 	p = g_kbkeys;
 	while ( p )
 	{
-		if ( !stricmp( name, p->name ) )
+		if ( !strcasecmp( name, p->name ) )
 			return p->pkey;
 
 		p = p->next;

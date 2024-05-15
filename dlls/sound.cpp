@@ -573,7 +573,7 @@ void CAmbientGeneric :: ToggleUse ( CBaseEntity *pActivator, CBaseEntity *pCalle
 		if (m_dpv.cspinup)
 		{
 			// Don't actually shut off. Each toggle causes
-			// incremental spinup to max pitch
+			// incremental spinup to fmax pitch
 
 			if (m_dpv.cspincount <= m_dpv.cspinup)
 			{	
@@ -991,7 +991,7 @@ void CEnvSound :: Spawn( )
 
 // ==================== SENTENCE GROUPS, UTILITY FUNCTIONS  ======================================
 
-#define CSENTENCE_LRU_MAX	32		// max number of elements per sentence group
+#define CSENTENCE_LRU_MAX	32		// fmax number of elements per sentence group
 
 // group of related sentences
 
@@ -1003,7 +1003,7 @@ typedef struct sentenceg
 
 } SENTENCEG;
 
-#define CSENTENCEG_MAX 200					// max number of sentence groups
+#define CSENTENCEG_MAX 200					// fmax number of sentence groups
 // globals
 
 SENTENCEG rgsentenceg[CSENTENCEG_MAX];
@@ -1395,7 +1395,7 @@ int SENTENCEG_Lookup(const char *sample, char *sentencenum)
 	// this is a sentence name; lookup sentence number
 	// and give to engine as string.
 	for (i = 0; i < gcallsentences; i++)
-		if (!stricmp(gszallsentencenames[i], sample+1))
+		if (!strcasecmp(gszallsentencenames[i], sample+1))
 		{
 			if (sentencenum)
 			{
@@ -1477,7 +1477,7 @@ void EMIT_GROUPNAME_SUIT(edict_t *entity, const char *groupname)
 
 int fTextureTypeInit = FALSE;
 
-#define CTEXTURESMAX		512			// max number of textures loaded
+#define CTEXTURESMAX		512			// fmax number of textures loaded
 
 int gcTextures = 0;
 char grgszTextureName[CTEXTURESMAX][CBTEXTURENAMEMAX];	// texture names
@@ -1590,7 +1590,7 @@ void TEXTURETYPE_Init()
 			continue;
 
 		// null-terminate name and save in sentences array
-		j = min (j, CBTEXTURENAMEMAX-1+i);
+		j = fmin (j, CBTEXTURENAMEMAX-1+i);
 		buffer[j] = 0;
 		strcpy(&(grgszTextureName[gcTextures++][0]), &(buffer[i]));
 	}
@@ -1612,7 +1612,7 @@ char TEXTURETYPE_Find(char *name)
 
 	for (int i = 0; i < gcTextures; i++)
 	{
-		if (!strnicmp(name, &(grgszTextureName[i][0]), CBTEXTURENAMEMAX-1))
+		if (!strncasecmp(name, &(grgszTextureName[i][0]), CBTEXTURENAMEMAX-1))
 			return (grgchTextureType[i]);
 	}
 

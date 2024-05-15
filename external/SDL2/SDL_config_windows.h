@@ -117,7 +117,7 @@ typedef unsigned int uintptr_t;
 #define HAVE_ATOF 1
 #define HAVE_STRCMP 1
 #define HAVE_STRNCMP 1
-#define HAVE__STRICMP 1
+#define HAVE__strcasecmp 1
 #define HAVE__STRNICMP 1
 #define HAVE_SSCANF 1
 #define HAVE_M_PI 1

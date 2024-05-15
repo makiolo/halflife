@@ -17,7 +17,7 @@
 
 #include "progdefs.h"
 
-// 16 simultaneous events, max
+// 16 simultaneous events, fmax
 #define MAX_EVENT_QUEUE 64
 
 #define DEFAULT_EVENT_RESENDS 1

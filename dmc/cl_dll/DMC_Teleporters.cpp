@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2001, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2001, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -91,19 +91,19 @@ void Dmc_SetKeyValue( dmc_tele_t *pTele, const char *key, const char *value )
 {
 	float x, y, z;
 
-	if ( !stricmp( key, "classname" ) )
+	if ( !strcasecmp( key, "classname" ) )
 	{
 		strcpy( pTele->classname, value );
 	}
-	else if ( !stricmp( key, "target" ) )
+	else if ( !strcasecmp( key, "target" ) )
 	{
 		strcpy( pTele->target, value );
 	}
-	else if ( !stricmp( key, "targetname" ) )
+	else if ( !strcasecmp( key, "targetname" ) )
 	{
 		strcpy( pTele->targetname, value );
 	}
-	else if ( !stricmp( key, "angles" ) )
+	else if ( !strcasecmp( key, "angles" ) )
 	{
 		if ( sscanf( value, "%f %f %f", &x, &y, &z ) == 3 )
 		{
@@ -112,7 +112,7 @@ void Dmc_SetKeyValue( dmc_tele_t *pTele, const char *key, const char *value )
 			pTele->angles[ 2 ] = z;
 		}
 	}
-	else if ( !stricmp( key, "origin" ) )
+	else if ( !strcasecmp( key, "origin" ) )
 	{
 		if ( sscanf( value, "%f %f %f", &x, &y, &z ) == 3 )
 		{
@@ -233,11 +233,11 @@ void Dmc_ProcessEnts( char *buffer )
 		}
 
 		// Check classname
-		if ( stricmp( pTele->classname, "trigger_teleport" ) && stricmp( pTele->classname, "info_teleport_destination" ) )
+		if ( strcasecmp( pTele->classname, "trigger_teleport" ) && strcasecmp( pTele->classname, "info_teleport_destination" ) )
 			continue;
 
 		// Set type based on classname
-		if ( !stricmp( pTele->classname, "trigger_teleport" ) )
+		if ( !strcasecmp( pTele->classname, "trigger_teleport" ) )
 		{
 			pTele->type = DMC_TELE;
 		}
@@ -374,7 +374,7 @@ dmc_tele_t *Dmc_FindTarget( const char *name, int numtele, dmc_tele_t *pTeles )
 		if ( !target )
 			continue;
 
-		if ( stricmp( target->targetname, name ) )
+		if ( strcasecmp( target->targetname, name ) )
 			continue;
 
 		return target;
@@ -505,7 +505,7 @@ void Dmc_CheckTeleporters( struct local_state_s *from, struct local_state_s *to 
 	static char current_level[ 128 ];
 	
 	// See if we've changed to a new map
-	if ( stricmp( current_level, gEngfuncs.pfnGetLevelName() ) )
+	if ( strcasecmp( current_level, gEngfuncs.pfnGetLevelName() ) )
 	{
 		strcpy( current_level, gEngfuncs.pfnGetLevelName() );
 		Dmc_LoadTeleporters( current_level );

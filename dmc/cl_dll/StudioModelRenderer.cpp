@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -459,7 +459,7 @@ void CStudioModelRenderer::StudioSetUpTransform (int trivial_accept)
 		// don't do it if the goalstarttime hasn't updated in a while.
 
 		// NOTE:  Because we need to interpolate multiplayer characters, the interpolation time limit
-		//  was increased to 1.0 s., which is 2x the max lag we are accounting for.
+		//  was increased to 1.0 s., which is 2x the fmax lag we are accounting for.
 
 		if ( ( m_clTime < m_pCurrentEntity->curstate.animtime + 1.0f ) &&
 			 ( m_pCurrentEntity->curstate.animtime != m_pCurrentEntity->latched.prevanimtime ) )
@@ -1023,7 +1023,7 @@ void CStudioModelRenderer::StudioMergeBones ( model_t *m_pSubModel )
 	{
 		for (j = 0; j < m_nCachedBones; j++)
 		{
-			if (stricmp(pbones[i].name, m_nCachedBoneNames[j]) == 0)
+			if (strcasecmp(pbones[i].name, m_nCachedBoneNames[j]) == 0)
 			{
 				MatrixCopy( m_rgCachedBoneTransform[j], (*m_pbonetransform)[i] );
 				MatrixCopy( m_rgCachedLightTransform[j], (*m_plighttransform)[i] );

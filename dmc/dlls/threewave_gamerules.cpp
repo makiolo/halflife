@@ -105,7 +105,7 @@ class CThreeWaveGameMgrHelper : public IVoiceGameMgrHelper
 public:
 	virtual bool		CanPlayerHearPlayer(CBasePlayer *pPlayer1, CBasePlayer *pPlayer2)
 	{
-		return stricmp(pPlayer1->TeamID(), pPlayer2->TeamID()) == 0;
+		return strcasecmp(pPlayer1->TeamID(), pPlayer2->TeamID()) == 0;
 	}
 };
 static CThreeWaveGameMgrHelper g_GameMgrHelper;
@@ -1413,7 +1413,7 @@ int CThreeWave::GetTeamIndex( const char *pTeamName )
 		// try to find existing team
 		for ( int tm = 0; tm < num_teams; tm++ )
 		{
-			if ( !stricmp( team_names[tm], pTeamName ) )
+			if ( !strcasecmp( team_names[tm], pTeamName ) )
 				return tm;
 		}
 	}

@@ -165,7 +165,7 @@ int LookupSequence( void *pmodel, const char *label )
 
 	for (int i = 0; i < pstudiohdr->numseq; i++)
 	{
-		if (stricmp( pseqdesc[i].label, label ) == 0)
+		if (strcasecmp( pseqdesc[i].label, label ) == 0)
 			return i;
 	}
 

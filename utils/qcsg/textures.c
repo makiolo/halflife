@@ -135,7 +135,7 @@ qboolean	TEX_InitFromWad (char *path)
 		// look and see if we're supposed to include the textures from this WAD in the bsp.
 		for (i = 0; i < nWadInclude; i++)
 		{
-			if (stricmp( pszWadInclude[i], pszWadFile ) == 0)
+			if (strcasecmp( pszWadInclude[i], pszWadFile ) == 0)
 			{
 				wadInclude[nTexFiles-1] = true;
 			}

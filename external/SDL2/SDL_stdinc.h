@@ -629,8 +629,8 @@ extern DECLSPEC int SDLCALL SDL_strcasecmp(const char *str1, const char *str2);
 #ifdef HAVE_STRCASECMP
 SDL_FORCE_INLINE int SDL_strcasecmp_inline(const char *str1, const char *str2) { return strcasecmp(str1, str2); }
 #define SDL_strcasecmp SDL_strcasecmp_inline
-#elif defined(HAVE__STRICMP)
-SDL_FORCE_INLINE int SDL_strcasecmp_inline(const char *str1, const char *str2) { return _stricmp(str1, str2); }
+#elif defined(HAVE__strcasecmp)
+SDL_FORCE_INLINE int SDL_strcasecmp_inline(const char *str1, const char *str2) { return _strcasecmp(str1, str2); }
 #define SDL_strcasecmp SDL_strcasecmp_inline
 #endif
 

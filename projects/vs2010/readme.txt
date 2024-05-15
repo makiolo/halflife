@@ -134,7 +134,7 @@ You might need to adjust Include and Additional Library Directories according
 to your intallation in C++ and Linker settings.
 
 The MAX 4.2 SDK needs adjustment:
-Comment out the following line in max.h
+Comment out the following line in fmax.h
 #include <ctl3d.h>
 So that it reads
 //#include <ctl3d.h

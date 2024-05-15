@@ -26,7 +26,7 @@ CBaseEntity
 				CBaseGroup
 */
 
-#define		MAX_PATH_SIZE	10 // max number of nodes available for a path.
+#define		MAX_PATH_SIZE	10 // fmax number of nodes available for a path.
 
 // These are caps bits to indicate what an object's capabilities (currently used for save/restore and level transitions)
 #define		FCAP_CUSTOMSAVE				0x00000001
@@ -606,7 +606,7 @@ public:
 #define DMG_SLOWFREEZE		(1 << 22)	// in a subzero freezer
 #define DMG_MORTAR			(1 << 23)	// Hit by air raid (done to distinguish grenade from mortar)
 
-#define DMG_IGNORE_MAXHEALTH (1<< 24)	// Used by TakeHealth only. Ignores the player's max health when healing.
+#define DMG_IGNORE_MAXHEALTH (1<< 24)	// Used by TakeHealth only. Ignores the player's fmax health when healing.
 
 // these are the damage types that are allowed to gib corpses
 #define DMG_GIB_CORPSE		( DMG_CRUSH | DMG_FALL | DMG_BLAST | DMG_SONIC | DMG_CLUB )

@@ -199,9 +199,9 @@ typedef struct
 	int		iSlot;
 	int		iPosition;
 	const char	*pszAmmo1;	// ammo 1 type
-	int		iMaxAmmo1;		// max ammo 1
+	int		iMaxAmmo1;		// fmax ammo 1
 	const char	*pszAmmo2;	// ammo 2 type
-	int		iMaxAmmo2;		// max ammo 2
+	int		iMaxAmmo2;		// fmax ammo 2
 	const char	*pszName;
 	int		iMaxClip;
 	int		iId;

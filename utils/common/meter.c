@@ -7,10 +7,10 @@
 int showmeter = 0;
 static int meter_cur, meter_max;
 
-void MeterStart( int max )
+void MeterStart( int fmax )
 {
 	meter_cur = 0;
-	meter_max = max;
+	meter_max = fmax;
 }
 
 

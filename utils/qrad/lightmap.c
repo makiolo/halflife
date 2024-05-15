@@ -1016,7 +1016,7 @@ void CreateDirectLights (void)
 
 		if (dl->type != emit_skylight)
 		{
-			l1 = max( dl->intensity[0], max( dl->intensity[1], dl->intensity[2] ) );
+			l1 = fmax( dl->intensity[0], fmax( dl->intensity[1], dl->intensity[2] ) );
 			l1 = l1 * l1 / 10;
 
 			dl->intensity[0] *= l1;
@@ -1059,7 +1059,7 @@ float	r_avertexnormals[NUMVERTEXNORMALS][3] = {
 #include "..\..\engine\anorms.h"
 };
 
-#define VectorMaximum(a) ( max( (a)[0], max( (a)[1], (a)[2] ) ) )
+#define VectorMaximum(a) ( fmax( (a)[0], fmax( (a)[1], (a)[2] ) ) )
 
 void GatherSampleLight (vec3_t pos, byte *pvs, vec3_t normal, vec3_t *sample, byte *styles)
 {
@@ -1699,12 +1699,12 @@ void FinalLightFace (int facenum)
 			// clip from the top
 			if( lb[0]>maxlight || lb[1]>maxlight || lb[2]>maxlight )
 			{
-				// find max value and scale the whole color down;
-				float max = lb[0] > lb[1] ? lb[0] : lb[1];
-				max = max > lb[2] ? max : lb[2];
+				// find fmax value and scale the whole color down;
+				float fmax = lb[0] > lb[1] ? lb[0] : lb[1];
+				fmax = fmax > lb[2] ? fmax : lb[2];
 
 				for( i=0; i<3; i++ )
-					lb[i] = ( lb[i] * maxlight ) / max;
+					lb[i] = ( lb[i] * maxlight ) / fmax;
 			}
 
 			// gamma adjust

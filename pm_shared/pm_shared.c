@@ -86,7 +86,7 @@ typedef struct hull_s
 #define VEC_VIEW			28
 #define	STOP_EPSILON		0.1
 
-#define CTEXTURESMAX		512			// max number of textures loaded
+#define CTEXTURESMAX		512			// fmax number of textures loaded
 #define CBTEXTURENAMEMAX	13			// only load first n chars of name
 
 #define CHAR_TEX_CONCRETE	'C'			// texture types
@@ -123,7 +123,7 @@ typedef struct hull_s
 
 // double to float warning
 #pragma warning(disable : 4244)
-#define max(a, b)  (((a) > (b)) ? (a) : (b))
+#define fmax(a, b)  (((a) > (b)) ? (a) : (b))
 #define min(a, b)  (((a) < (b)) ? (a) : (b))
 // up / down
 #define	PITCH	0
@@ -178,7 +178,7 @@ void PM_SortTextures( void )
 	{
 		for ( j = i + 1; j < gcTextures; j++ )
 		{
-			if ( stricmp( grgszTextureName[ i ], grgszTextureName[ j ] ) > 0 )
+			if ( strcasecmp( grgszTextureName[ i ], grgszTextureName[ j ] ) > 0 )
 			{
 				// Swap
 				//
@@ -272,7 +272,7 @@ char PM_FindTextureType( char *name )
 	{
 		pivot = ( left + right ) / 2;
 
-		val = strnicmp( name, grgszTextureName[ pivot ], CBTEXTURENAMEMAX-1 );
+		val = strncasecmp( name, grgszTextureName[ pivot ], CBTEXTURENAMEMAX-1 );
 		if ( val == 0 )
 		{
 			return grgchTextureType[ pivot ];
@@ -1066,7 +1066,7 @@ void PM_WalkMove ()
 	wishspeed = VectorNormalize(wishdir);
 
 //
-// Clamp to server defined max speed
+// Clamp to server defined fmax speed
 //
 	if (wishspeed > pmove->maxspeed)
 	{
@@ -1441,7 +1441,7 @@ void PM_AirMove (void)
 	VectorCopy (wishvel, wishdir);  
 	wishspeed = VectorNormalize(wishdir);
 
-	// Clamp to server defined max speed
+	// Clamp to server defined fmax speed
 	if (wishspeed > pmove->maxspeed)
 	{
 		VectorScale (wishvel, pmove->maxspeed/wishspeed, wishvel);
@@ -1822,7 +1822,7 @@ void PM_SpectatorMove (void)
 		wishspeed = VectorNormalize(wishdir);
 
 		//
-		// clamp to server defined max speed
+		// clamp to server defined fmax speed
 		//
 		if (wishspeed > pmove->movevars->spectatormaxspeed)
 		{
@@ -2009,7 +2009,7 @@ void PM_Duck( void )
 				pmove->bInDuck    = true;
 			}
 
-			time = max( 0.0, ( 1.0 - (float)pmove->flDuckTime / 1000.0 ) );
+			time = fmax( 0.0, ( 1.0 - (float)pmove->flDuckTime / 1000.0 ) );
 			
 			if ( pmove->bInDuck )
 			{
@@ -2822,7 +2822,7 @@ void PM_DropPunchAngle ( vec3_t punchangle )
 	
 	len = VectorNormalize ( punchangle );
 	len -= (10.0 + len * 0.5) * pmove->frametime;
-	len = max( len, 0.0 );
+	len = fmax( len, 0.0 );
 	VectorScale ( punchangle, len, punchangle);
 }
 

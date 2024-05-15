@@ -77,7 +77,7 @@ unsigned int HasTsc()
 		return 0;
 
 	_asm {
-		; check that max cpuid levels must be at least 1
+		; check that fmax cpuid levels must be at least 1
 		mov		eax,0
 		CPUID
 		cmp		eax,1

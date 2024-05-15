@@ -332,7 +332,7 @@ void ScorePanel::SortTeams()
 		int j;
 		for ( j = 1; j <= m_iNumTeams; j++ )
 		{
-			if ( !stricmp( g_PlayerExtraInfo[i].teamname, g_TeamInfo[j].name ) )
+			if ( !strcasecmp( g_PlayerExtraInfo[i].teamname, g_TeamInfo[j].name ) )
 				break;
 		}
 		if ( j > m_iNumTeams )  // player is not in a team, skip to the next guy
@@ -429,7 +429,7 @@ void ScorePanel::SortPlayers( int iTeam, char *team )
 			{
 				cl_entity_t *ent = gEngfuncs.GetEntityByIndex( i );
 
-				if ( ent && !(team && stricmp(g_PlayerExtraInfo[i].teamname, team)) )  
+				if ( ent && !(team && strcasecmp(g_PlayerExtraInfo[i].teamname, team)) )
 				{
 					extra_player_info_t *pl_info = &g_PlayerExtraInfo[i];
 					if ( pl_info->frags > highest_frags || pl_info->deaths < lowest_deaths )
@@ -496,7 +496,7 @@ void ScorePanel::RebuildTeams()
 			if ( g_TeamInfo[j].name[0] == '\0' )
 				break;
 
-			if ( !stricmp( g_PlayerExtraInfo[i].teamname, g_TeamInfo[j].name ) )
+			if ( !strcasecmp( g_PlayerExtraInfo[i].teamname, g_TeamInfo[j].name ) )
 				break;
 		}
 
@@ -508,7 +508,7 @@ void ScorePanel::RebuildTeams()
 				if ( g_TeamInfo[j].name[0] == '\0' )
 					break;
 			}
-			m_iNumTeams = max( j, m_iNumTeams );
+			m_iNumTeams = fmax( j, m_iNumTeams );
 
 			strncpy( g_TeamInfo[j].name, g_PlayerExtraInfo[i].teamname, MAX_TEAM_NAME );
 			g_TeamInfo[j].players = 0;

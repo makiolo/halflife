@@ -143,7 +143,7 @@
 /* enable joystick subsystem */
 #define SDL_JOYSTICK_DISABLED 0
 
-/* Set max recognized G-force from accelerometer
+/* Set fmax recognized G-force from accelerometer
    See src/joystick/uikit/SDLUIAccelerationDelegate.m for notes on why this is needed
  */
 #define SDL_IPHONE_MAX_GFORCE 5.0

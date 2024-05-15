@@ -21,7 +21,7 @@ DLL_OBJDIR=$(DLL_SRCDIR)/obj
 PM_SHARED_OBJDIR=$(DLL_OBJDIR)/pm_shared
 GAME_SHARED_OBJDIR=$(DLL_OBJDIR)/game_shared
 
-BASE_CFLAGS=	-Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_vsnprintf=vsnprintf\
+BASE_CFLAGS=	-Dstrcasecmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_vsnprintf=vsnprintf\
 				-DCLIENT_WEAPONS
 
 #safe optimization

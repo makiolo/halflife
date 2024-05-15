@@ -34,6 +34,7 @@ enum glock_e {
 	GLOCK_ADD_SILENCER
 };
 
+/*
 class CGlock : public CBasePlayerWeapon
 {
 public:
@@ -56,6 +57,8 @@ private:
 	unsigned short m_usFireGlock1;
 	unsigned short m_usFireGlock2;
 };
+*/
+
 LINK_ENTITY_TO_CLASS( weapon_glock, CGlock );
 LINK_ENTITY_TO_CLASS( weapon_9mmhandgun, CGlock );
 

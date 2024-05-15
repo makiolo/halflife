@@ -35,7 +35,7 @@
 #ifdef __WIN32__
 #define WIN32_LEAN_AND_MEAN
 #ifndef NOMINMAX
-#define NOMINMAX                /* Don't defined min() and max() */
+#define NOMINMAX                /* Don't defined min() and fmax() */
 #endif
 #include <windows.h>
 #endif

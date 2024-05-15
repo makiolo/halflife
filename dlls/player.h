@@ -42,7 +42,7 @@
 //-----------------------------------------------------
 //This is Half-Life player entity
 //-----------------------------------------------------
-#define CSUITPLAYLIST	4		// max of 4 suit sentences queued up at any time
+#define CSUITPLAYLIST	4		// fmax of 4 suit sentences queued up at any time
 
 #define SUIT_GROUP			TRUE
 #define	SUIT_SENTENCE		FALSE

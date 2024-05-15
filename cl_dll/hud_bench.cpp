@@ -100,7 +100,7 @@ int Bench_GetStage( void )
 
 float Bench_GetSwitchTime( void )
 {
-	return g_benchSwitchTimes[ min( Bench_GetStage(), LAST_STAGE ) ];
+	return g_benchSwitchTimes[ fmin( Bench_GetStage(), LAST_STAGE ) ];
 }
 
 int Bench_InStage( int stage )
@@ -146,8 +146,8 @@ int CHudBenchmark::MsgFunc_Bench(const char *pszName, int iSize, void *pbuf)
 	m_fReceiveTime = gHUD.m_flTime;
 	m_StoredLatency = ( m_fReceiveTime - m_fSendTime );
 
-	m_StoredLatency = min( 1.0, m_StoredLatency );
-	m_StoredLatency = max( 0.0, m_StoredLatency );
+	m_StoredLatency = fmin( 1.0, m_StoredLatency );
+	m_StoredLatency = fmax( 0.0, m_StoredLatency );
 
 	m_StoredPacketLoss = 0.0;
 
@@ -235,7 +235,7 @@ void Bench_CheckStart( void )
 	if ( !started && !Bench_Active() )
 	{
 		level = gEngfuncs.pfnGetLevelName();
-		if ( level && level[0] && !stricmp( level, "maps/ppdemo.bsp" ) )
+		if ( level && level[0] && !strcasecmp( level, "maps/ppdemo.bsp" ) )
 		{
 			started = 1;
 			EngineClientCmd( "ppdemostart\n" );
@@ -279,14 +279,14 @@ void CHudBenchmark::Think( void )
 
 	if ( Bench_InStage( FIRST_STAGE ) )
 	{
-		// Assume 1000 ms lag is the max and that would take all but 2 seconds of this interval to traverse
+		// Assume 1000 ms lag is the fmax and that would take all but 2 seconds of this interval to traverse
 		if ( m_fReceiveTime )
 		{
 			float latency = 2.0 * m_StoredLatency;
 			float switch_time;
 			float total_time;
 			
-			latency = max( 0.0, latency );
+			latency = fmax( 0.0, latency );
 			latency = min( 1.0, latency );
 
 			total_time = Bench_GetSwitchTime();
@@ -341,7 +341,7 @@ void CHudBenchmark::Think( void )
 
 			// Only takes 1/2 time to get up to maximum speed
 			frac *= 2.0;
-			frac = max( 0.0, frac );
+			frac = fmax( 0.0, frac );
 			frac = min( 1.0, frac );
 
 			m_nObjects = (int)(NUM_BENCH_OBJ * frac);
@@ -420,7 +420,7 @@ int CHudBenchmark::Bench_ScoreForValue( int stage, float raw )
 	{
 	case 1:  // ping
 		score = 100.0 * ( m_StoredLatency );
-		score = max( score, 0 );
+		score = fmax( score, 0 );
 		score = min( score, 100 );
 
 		// score is inverted
@@ -430,7 +430,7 @@ int CHudBenchmark::Bench_ScoreForValue( int stage, float raw )
 	case 2:  // framerate/performance
 		score = (int)( 100 * m_fAvgFrameRate ) / 72;
 		score = min( score, 100 );
-		score = max( score, 0 );
+		score = fmax( score, 0 );
 
 		score *= BENCH_RANGE/100.0;
 		if ( power_play )
@@ -440,7 +440,7 @@ int CHudBenchmark::Bench_ScoreForValue( int stage, float raw )
 		break;
 	case 3:  // tracking
 		score = (100 * m_fAvgScore) / 40;
-		score = max( score, 0 );
+		score = fmax( score, 0 );
 		score = min( score, 100 );
 
 		// score is inverted
@@ -466,7 +466,7 @@ void CHudBenchmark::SetCompositeScore( void )
 	int composite = ( ping_score * weights[ 0 ] + frame_score * weights[ 1 ] + tracking_score * weights[ 2 ] );
 	
 	composite = min( 100, composite );
-	composite = max( 0, composite );
+	composite = fmax( 0, composite );
 
 	m_nCompositeScore = composite;
 }
@@ -622,7 +622,7 @@ float g_fZAdjust = 0.0;
 
 void Bench_CheckEntity( int type, struct cl_entity_s *ent, const char *modelname )
 {
-	if ( Bench_InStage( THIRD_STAGE ) && !stricmp( modelname, "*3" ) )
+	if ( Bench_InStage( THIRD_STAGE ) && !strcasecmp( modelname, "*3" ) )
 	{
 		model_t *pmod;
 		vec3_t v;
@@ -653,7 +653,7 @@ void Bench_CheckEntity( int type, struct cl_entity_s *ent, const char *modelname
 			{
 				fZAdjust += gEngfuncs.pfnRandomFloat( -fRate, fRate );
 				fZAdjust = min( fBounds, fZAdjust );
-				fZAdjust = max( -fBounds, fZAdjust );
+				fZAdjust = fmax( -fBounds, fZAdjust );
 
 				ent->origin[2] += fZAdjust;
 
@@ -1055,7 +1055,7 @@ void Bench_SetViewAngles( int recalc_wander, float *viewangles, float frametime,
 			for ( i = 0; i < 2; i++ )
 			{
 				v_stochastic[ i ] += frametime * gEngfuncs.pfnRandomFloat( -fmag, fmag );
-				v_stochastic[ i ] = max( -15.0, v_stochastic[ i ] );
+				v_stochastic[ i ] = fmax( -15.0, v_stochastic[ i ] );
 				v_stochastic[ i ] = min( 15.0, v_stochastic[ i ] );
 			}
 

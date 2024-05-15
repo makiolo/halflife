@@ -485,7 +485,7 @@ typedef struct
 	void			(*pfnCmdStart)			( const edict_t *player, const struct usercmd_s *cmd, unsigned int random_seed );
 	void			(*pfnCmdEnd)			( const edict_t *player );
 
-	// Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the max
+	// Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the fmax
 	//  size of the response_buffer, so you must zero it out if you choose not to respond.
 	int				(*pfnConnectionlessPacket )	( const struct netadr_s *net_from, const char *args, char *response_buffer, int *response_buffer_size );
 

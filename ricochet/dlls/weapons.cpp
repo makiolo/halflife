@@ -247,7 +247,7 @@ void AddAmmoNameToAmmoRegistry( const char *szAmmoname )
 		if ( !CBasePlayerItem::AmmoInfoArray[i].pszName)
 			continue;
 
-		if ( stricmp( CBasePlayerItem::AmmoInfoArray[i].pszName, szAmmoname ) == 0 )
+		if ( strcasecmp( CBasePlayerItem::AmmoInfoArray[i].pszName, szAmmoname ) == 0 )
 			return; // ammo already in registry, just quite
 	}
 

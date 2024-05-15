@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -154,7 +154,7 @@ public:
 
 		// Space for buttons
 		height -= YRES(20);
-		height = max( 0, height );
+		height = fmax( 0, height );
 
 		rowcount = height / CELL_HEIGHT;
 
@@ -223,7 +223,7 @@ public:
 				break;
 			case 3:
 				val = gEngfuncs.pNetAPI->ValueForKey( info, "current" );
-				val2 = gEngfuncs.pNetAPI->ValueForKey( info, "max" );
+				val2 = gEngfuncs.pNetAPI->ValueForKey( info, "fmax" );
 				if ( val && val2 )
 				{
 					sprintf( sz, "%s/%s", val, val2 );

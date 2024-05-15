@@ -692,7 +692,7 @@ void GrabFont( void )
 	int		index, offset;
 	int		width;
 	int		iCurX;	// current x in destination
-	int		iMaxX;  // max x in destination
+	int		iMaxX;  // fmax x in destination
 	
 	byte	*pbuf, *pCur;
 	qfont_t 			*header;

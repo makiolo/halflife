@@ -423,11 +423,11 @@ void CTalkMonster :: StartTask( Task_t *pTask )
 
 			if (yaw < 0)
 			{
-				pev->ideal_yaw = min( yaw + 45, 0 ) + pev->angles.y;
+				pev->ideal_yaw = fmin( yaw + 45, 0 ) + pev->angles.y;
 			}
 			else
 			{
-				pev->ideal_yaw = max( yaw - 45, 0 ) + pev->angles.y;
+				pev->ideal_yaw = fmax( yaw - 45, 0 ) + pev->angles.y;
 			}
 		}
 		TaskComplete();
@@ -1039,14 +1039,14 @@ int CTalkMonster :: FIdleSpeak ( void )
 	{
 		szIdleGroup = m_szGrp[TLK_PIDLE];
 		szQuestionGroup = m_szGrp[TLK_PQUESTION];
-		// set global min delay for next conversation
+		// set global fmin delay for next conversation
 		duration = RANDOM_FLOAT(4.8, 5.2);
 	}
 	else
 	{
 		szIdleGroup = m_szGrp[TLK_IDLE];
 		szQuestionGroup = m_szGrp[TLK_QUESTION];
-		// set global min delay for next conversation
+		// set global fmin delay for next conversation
 		duration = RANDOM_FLOAT(2.8, 3.2);
 
 	}

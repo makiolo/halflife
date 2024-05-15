@@ -45,7 +45,7 @@ BaseWindingForPlane
 winding_t *BaseWindingForPlane (dplane_t *p)
 {
 	int		i, x;
-	vec_t	max, v;
+	vec_t	fmax, v;
 	vec3_t	org, vright, vup;
 	winding_t	*w;
 	vec3_t	temp;
@@ -53,15 +53,15 @@ winding_t *BaseWindingForPlane (dplane_t *p)
 #if 0
 // find the major axis
 
-	max = -BOGUS_RANGE;
+	fmax = -BOGUS_RANGE;
 	x = -1;
 	for (i=0 ; i<3; i++)
 	{
 		v = fabs(p->normal[i]);
-		if (v > max)
+		if (v > fmax)
 		{
 			x = i;
-			max = v;
+			fmax = v;
 		}
 	}
 	if (x==-1)

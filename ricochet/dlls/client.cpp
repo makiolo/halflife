@@ -67,7 +67,7 @@ extern void AddClientToArena( CBasePlayer *pPlayer );
 
 int GetHueFromRGB( float r, float g, float b )
 {
-	float fMax = max( max( r, g ) , b );
+	float fMax = fmax( fmax( r, g ) , b );
 	float fMin = min( min( r, g ) , b );
 	float fSaturation = 0;
 
@@ -322,7 +322,7 @@ void Host_Say( edict_t *pEntity, int teamonly )
 	if ( CMD_ARGC() == 0 )
 		return;
 
-	if ( !stricmp( pcmd, cpSay) || !stricmp( pcmd, cpSayTeam ) )
+	if ( !strcasecmp( pcmd, cpSay) || !strcasecmp( pcmd, cpSayTeam ) )
 	{
 		if ( CMD_ARGC() >= 2 )
 		{
@@ -533,7 +533,7 @@ void ClientCommand( edict_t *pEntity )
 		char command[128];
 
 		// check the length of the command (prevents crash)
-		// max total length is 192 ...and we're adding a string below (#Game_unknown_command)
+		// fmax total length is 192 ...and we're adding a string below (#Game_unknown_command)
 		strncpy( command, pcmd, 127 );
 		command[127] = '\0';
 
@@ -653,7 +653,7 @@ void ServerActivate( edict_t *pEdictList, int edictCount, int clientMax )
 	// Link user messages here to make sure first client can get them...
 	LinkUserMessages();
 
-	// Set max speed
+	// Set fmax speed
 	SERVER_COMMAND( "sv_maxspeed 320\n" );
 
 	// Reset Arena Count
@@ -899,7 +899,7 @@ void PlayerCustomization( edict_t *pEntity, customization_t *pCust )
 	switch (pCust->resource.type)
 	{
 	case t_decal:
-		pPlayer->SetCustomDecalFrames(pCust->nUserData2); // Second int is max # of frames.
+		pPlayer->SetCustomDecalFrames(pCust->nUserData2); // Second int is fmax # of frames.
 		break;
 	case t_sound:
 	case t_skin:
@@ -1545,9 +1545,9 @@ int GetWeaponData( struct edict_s *player, struct weapon_data_s *info )
 						item->m_iId						= II.iId;
 						item->m_iClip					= pl->m_rgAmmo[gun->m_iPrimaryAmmoType];//gun->m_iClip;
 
-						item->m_flTimeWeaponIdle		= max( gun->m_flTimeWeaponIdle, -0.001 );
-						item->m_flNextPrimaryAttack		= max( gun->m_flNextPrimaryAttack, -0.001 );
-						item->m_flNextSecondaryAttack	= max( gun->m_flNextSecondaryAttack, -0.001 );
+						item->m_flTimeWeaponIdle		= fmax( gun->m_flTimeWeaponIdle, -0.001 );
+						item->m_flNextPrimaryAttack		= fmax( gun->m_flNextPrimaryAttack, -0.001 );
+						item->m_flNextSecondaryAttack	= fmax( gun->m_flNextSecondaryAttack, -0.001 );
 						item->m_fInReload				= gun->m_fInReload;
 					}
 				}
@@ -1674,7 +1674,7 @@ void CmdEnd ( const edict_t *player )
 ================================
 ConnectionlessPacket
 
- Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the max
+ Return 1 if the packet is valid.  Set response_buffer_size if you want to send a response packet.  Incoming, it holds the fmax
   size of the response_buffer, so you must zero it out if you choose not to respond.
 ================================
 */

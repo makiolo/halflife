@@ -188,7 +188,7 @@ BOOL CHoundeye :: FCanActiveIdle ( void )
 
 //=========================================================
 // CheckRangeAttack1 - overridden for houndeyes so that they
-// try to get within half of their max attack radius before
+// try to get within half of their fmax attack radius before
 // attacking, so as to increase their chances of doing damage.
 //=========================================================
 BOOL CHoundeye :: CheckRangeAttack1 ( float flDot, float flDist )

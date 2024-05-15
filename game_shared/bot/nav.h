@@ -16,7 +16,7 @@ const float JumpCrouchHeight = 58.0f;			///< (48) if delta Z is less than or equ
 // This slope will represent the slope you can navigate without much slowdown
 const float MaxSlope = 1.4f;							///< rise/run - if greater than this, we can't move up it (de_survivor canyon ramps)
 
-// instead of MaxSlope, we are using the following max Z component of a unit normal
+// instead of MaxSlope, we are using the following fmax Z component of a unit normal
 const float MaxUnitZSlope = 0.7f;
 
 const float BotRadius = 10.0f;						///< circular extent that contains bot

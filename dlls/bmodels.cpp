@@ -562,7 +562,7 @@ void CFuncRotating :: RampPitchVol (int fUp)
 
 	fpct = vecCur / vecFinal;
 //	if (fUp)
-//		fvol = m_flVolume * (0.5 + fpct/2.0); // spinup volume ramps up from 50% max vol
+//		fvol = m_flVolume * (0.5 + fpct/2.0); // spinup volume ramps up from 50% fmax vol
 //	else
 		fvol = m_flVolume * fpct;			  // slowdown volume ramps down to 0
 

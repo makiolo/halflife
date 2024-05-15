@@ -25,7 +25,7 @@
 #include	"skill.h"
 #include	"game.h"
 #include	"items.h"
-#include	"voice_gamemgr.h"
+// #include	"voice_gamemgr.h"
 #include	"hltv.h"
 
 #if !defined ( _WIN32 )
@@ -47,8 +47,9 @@ extern int g_teamplay;
 
 float g_flIntermissionStartTime = 0;
 
-CVoiceGameMgr	g_VoiceGameMgr;
+// CVoiceGameMgr	g_VoiceGameMgr;
 
+/*
 class CMultiplayGameMgrHelper : public IVoiceGameMgrHelper
 {
 public:
@@ -66,6 +67,7 @@ public:
 	}
 };
 static CMultiplayGameMgrHelper g_GameMgrHelper;
+*/
 
 //*********************************************************
 // Rules for the half-life multiplayer game.
@@ -73,7 +75,7 @@ static CMultiplayGameMgrHelper g_GameMgrHelper;
 
 CHalfLifeMultiplay :: CHalfLifeMultiplay()
 {
-	g_VoiceGameMgr.Init(&g_GameMgrHelper, gpGlobals->maxClients);
+	// g_VoiceGameMgr.Init(&g_GameMgrHelper, gpGlobals->maxClients);
 
 	RefreshSkillData();
 	m_flIntermissionEndTime = 0;
@@ -110,8 +112,10 @@ CHalfLifeMultiplay :: CHalfLifeMultiplay()
 
 BOOL CHalfLifeMultiplay::ClientCommand( CBasePlayer *pPlayer, const char *pcmd )
 {
+    /*
 	if(g_VoiceGameMgr.ClientCommand(pPlayer, pcmd))
 		return TRUE;
+    */
 
 	return CGameRules::ClientCommand(pPlayer, pcmd);
 }
@@ -180,7 +184,7 @@ extern cvar_t mp_chattime;
 //=========================================================
 void CHalfLifeMultiplay :: Think ( void )
 {
-	g_VoiceGameMgr.Update(gpGlobals->frametime);
+	// g_VoiceGameMgr.Update(gpGlobals->frametime);
 
 	///// Check game rules /////
 	static int last_frags;
@@ -203,7 +207,7 @@ void CHalfLifeMultiplay :: Think ( void )
 		// check to see if we should change levels now
 		if ( m_flIntermissionEndTime < gpGlobals->time )
 		{
-			if ( m_iEndIntermissionButtonHit  // check that someone has pressed a key, or the max intermission time is over
+			if ( m_iEndIntermissionButtonHit  // check that someone has pressed a key, or the fmax intermission time is over
 				|| ( ( g_flIntermissionStartTime + MAX_INTERMISSION_TIME ) < gpGlobals->time) ) 
 				ChangeLevel(); // intermission is over
 		}
@@ -391,7 +395,7 @@ BOOL CHalfLifeMultiplay :: GetNextBestWeapon( CBasePlayer *pPlayer, CBasePlayerI
 //=========================================================
 BOOL CHalfLifeMultiplay :: ClientConnected( edict_t *pEntity, const char *pszName, const char *pszAddress, char szRejectReason[ 128 ] )
 {
-	g_VoiceGameMgr.ClientConnected(pEntity);
+	// g_VoiceGameMgr.ClientConnected(pEntity);
 	return TRUE;
 }
 
@@ -1366,15 +1370,15 @@ int ReloadMapCycleFile( char *filename, mapcycle_t *cycle )
 					if ( s && s[0] )
 					{
 						item->minplayers = atoi( s );
-						item->minplayers = max( item->minplayers, 0 );
-						item->minplayers = min( item->minplayers, gpGlobals->maxClients );
+						item->minplayers = fmax( item->minplayers, 0 );
+						item->minplayers = fmin( item->minplayers, gpGlobals->maxClients );
 					}
 					s = g_engfuncs.pfnInfoKeyValue( szBuffer, "maxplayers" );
 					if ( s && s[0] )
 					{
 						item->maxplayers = atoi( s );
-						item->maxplayers = max( item->maxplayers, 0 );
-						item->maxplayers = min( item->maxplayers, gpGlobals->maxClients );
+						item->maxplayers = fmax( item->maxplayers, 0 );
+						item->maxplayers = fmin( item->maxplayers, gpGlobals->maxClients );
 					}
 
 					// Remove keys
@@ -1540,7 +1544,7 @@ void CHalfLifeMultiplay :: ChangeLevel( void )
 	curplayers = CountPlayers();
 
 	// Has the map cycle filename changed?
-	if ( stricmp( mapcfile, szPreviousMapCycleFile ) )
+	if ( strcasecmp( mapcfile, szPreviousMapCycleFile ) )
 	{
 		strcpy( szPreviousMapCycleFile, mapcfile );
 
@@ -1628,7 +1632,7 @@ void CHalfLifeMultiplay :: ChangeLevel( void )
 	ALERT( at_console, "CHANGE LEVEL: %s\n", szNextMap );
 	if ( minplayers || maxplayers )
 	{
-		ALERT( at_console, "PLAYER COUNT:  min %i max %i current %i\n", minplayers, maxplayers, curplayers );
+		ALERT( at_console, "PLAYER COUNT:  fmin %i fmax %i current %i\n", minplayers, maxplayers, curplayers );
 	}
 	if ( strlen( szRules ) > 0 )
 	{

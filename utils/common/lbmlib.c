@@ -97,7 +97,7 @@ byte  *LBMRLEDecompress (byte *source,byte *unpacked, int bpwidth)
 
 
 #define BPLANESIZE      128
-byte    bitplanes[9][BPLANESIZE];       // max size 1024 by 9 bit planes
+byte    bitplanes[9][BPLANESIZE];       // fmax size 1024 by 9 bit planes
 
 
 /*

@@ -219,7 +219,7 @@ int PlaneFromPoints (int *p0, int *p1, int *p2)
 */
 
 
-void ScaleUpIVector (int *iv, int min)
+void ScaleUpIVector (int *iv, int fmin)
 {
 	int		i;
 	int		largest, scale;
@@ -231,7 +231,7 @@ void ScaleUpIVector (int *iv, int min)
 			largest = abs(iv[i]);
 	}
 
-	scale = (min + largest - 1)/largest;
+	scale = (fmin + largest - 1)/largest;
 	for (i=0 ; i<3 ; i++)
 		iv[i] *= scale;
 }
@@ -244,7 +244,7 @@ BaseWindingForIPlane
 winding_t *BaseWindingForIPlane (plane_t *p)
 {
 	int		i, x;
-	vec_t	max, v;
+	vec_t	fmax, v;
 	winding_t	*w;
 	int		org[3], vup[3], vright[3];
 

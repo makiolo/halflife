@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -17,7 +17,7 @@
 #endif
 
 #undef min
-#undef max
+#undef fmax
 #include <list>
 #include <vector>
 #include "bot_constants.h"
@@ -183,7 +183,7 @@ public:
 	const BotProfile *GetProfile( const char *name, BotProfileTeamType team ) const
 	{
 		for( BotProfileList::const_iterator iter = m_profileList.begin(); iter != m_profileList.end(); ++iter )
-			if ( !stricmp( name, (*iter)->GetName() ) && (*iter)->IsValidForTeam( team ) )
+			if ( !strcasecmp( name, (*iter)->GetName() ) && (*iter)->IsValidForTeam( team ) )
 				return *iter;
 
 		return NULL;

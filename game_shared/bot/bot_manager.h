@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -18,9 +18,9 @@
 #include "GameEvent.h" // Game event enum used by career mode, tutor system, and bots
 
 #ifndef _WIN32
-// DAL <list> undefs max and min 
-#ifndef max
-#define max(a,b) ((a) > (b) ? (a) : (b))
+// DAL <list> undefs fmax and min
+#ifndef fmax
+#define fmax(a,b) ((a) > (b) ? (a) : (b))
 #endif
 #ifndef min
 #define min(a,b) ((a) < (b) ? (a) : (b))
@@ -90,7 +90,7 @@ public:
 	 */
 	virtual void OnEvent( GameEventType event, CBaseEntity *entity = NULL, CBaseEntity *other = NULL );
 
-	virtual unsigned int GetPlayerPriority( CBasePlayer *player ) const = 0;	///< return priority of player (0 = max pri)
+	virtual unsigned int GetPlayerPriority( CBasePlayer *player ) const = 0;	///< return priority of player (0 = fmax pri)
 	
 
 	void AddGrenade( int type, CGrenade *grenade );				///< add an active grenade to the bot's awareness

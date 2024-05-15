@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -184,9 +184,9 @@ void ScrollBar2::addIntChangeSignal(IntChangeSignal* s)
 	_slider->addIntChangeSignal(new FooDefaultScrollBarIntChangeSignal(this));
 }
 
-void ScrollBar2::setRange(int min,int max)
+void ScrollBar2::setRange(int min,int fmax)
 {
-	_slider->setRange(min,max);
+	_slider->setRange(min,fmax);
 }
 
 void ScrollBar2::fireIntChangeSignal()

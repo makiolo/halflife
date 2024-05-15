@@ -43,7 +43,7 @@ int main (int argc, char **argv)
 
 	for (i = 0; i < numlumps; i++) {
 		for (j = 2; j < argc; j++) {
-			if (stricmp( lumpinfo[i].name, argv[j] ) == 0)
+			if (strcasecmp( lumpinfo[i].name, argv[j] ) == 0)
 				break;
 		}
 		if (argc == 2 || j < argc) {

@@ -76,27 +76,27 @@ void Ricochet_SetKeyValue( ric_pad_t *pad, const char *key, const char *value )
 {
 	float x, y, z;
 
-	if ( !stricmp( key, "classname" ) )
+	if ( !strcasecmp( key, "classname" ) )
 	{
 		strcpy( pad->classname, value );
 	}
-	else if ( !stricmp( key, "target" ) )
+	else if ( !strcasecmp( key, "target" ) )
 	{
 		strcpy( pad->target, value );
 	}
-	else if ( !stricmp( key, "targetname" ) )
+	else if ( !strcasecmp( key, "targetname" ) )
 	{
 		strcpy( pad->targetname, value );
 	}
-	else if ( !stricmp( key, "model" ) )
+	else if ( !strcasecmp( key, "model" ) )
 	{
 		strcpy( pad->modelname, value );
 	}
-	else if ( !stricmp( key, "height" ) )
+	else if ( !strcasecmp( key, "height" ) )
 	{
 		pad->height = atof( value );
 	}
-	else if ( !stricmp( key, "angles" ) )
+	else if ( !strcasecmp( key, "angles" ) )
 	{
 		if ( sscanf( value, "%f %f %f", &x, &y, &z ) == 3 )
 		{
@@ -105,7 +105,7 @@ void Ricochet_SetKeyValue( ric_pad_t *pad, const char *key, const char *value )
 			pad->angles[ 2 ] = z;
 		}
 	}
-	else if ( !stricmp( key, "origin" ) )
+	else if ( !strcasecmp( key, "origin" ) )
 	{
 		if ( sscanf( value, "%f %f %f", &x, &y, &z ) == 3 )
 		{
@@ -224,11 +224,11 @@ void Ricochet_ProcessEnts( char *buffer )
 		}
 
 		// Check classname
-		if ( stricmp( pad->classname, "trigger_jump" ) && stricmp( pad->classname, "info_target" ) )
+		if ( strcasecmp( pad->classname, "trigger_jump" ) && strcasecmp( pad->classname, "info_target" ) )
 			continue;
 
 		// Set type based on classname
-		if ( !stricmp( pad->classname, "trigger_jump" ) )
+		if ( !strcasecmp( pad->classname, "trigger_jump" ) )
 		{
 			pad->type = RIC_PAD;
 		}
@@ -370,7 +370,7 @@ ric_pad_t *Ricochet_FindTarget( const char *name, int numpads, ric_pad_t *pads )
 		if ( !target )
 			continue;
 
-		if ( stricmp( target->targetname, name ) )
+		if ( strcasecmp( target->targetname, name ) )
 			continue;
 
 		return target;
@@ -562,7 +562,7 @@ void Ricochet_CheckJumpPads( struct local_state_s *from, struct local_state_s *t
 	static char current_level[ 128 ];
 	
 	// See if we've changed to a new map
-	if ( stricmp( current_level, gEngfuncs.pfnGetLevelName() ) )
+	if ( strcasecmp( current_level, gEngfuncs.pfnGetLevelName() ) )
 	{
 		strcpy( current_level, gEngfuncs.pfnGetLevelName() );
 		Ricochet_LoadJumpPads( current_level );

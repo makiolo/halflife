@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -221,7 +221,7 @@ struct kbutton_s EXPORT *KB_Find( const char *name )
 	p = g_kbkeys;
 	while ( p )
 	{
-		if ( !stricmp( name, p->name ) )
+		if ( !strcasecmp( name, p->name ) )
 			return p->pkey;
 
 		p = p->next;

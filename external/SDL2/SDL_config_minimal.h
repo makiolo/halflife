@@ -120,7 +120,7 @@
 #define HAVE_ATOF 1
 #define HAVE_STRCMP 1
 #define HAVE_STRNCMP 1
-/* #undef HAVE__STRICMP */
+/* #undef HAVE__strcasecmp */
 #define HAVE_STRCASECMP 1
 /* #undef HAVE__STRNICMP */
 #define HAVE_STRNCASECMP 1

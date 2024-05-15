@@ -26,7 +26,7 @@ CBaseEntity
 				CBaseGroup
 */
 
-#define		MAX_PATH_SIZE	10 // max number of nodes available for a path.
+#define		MAX_PATH_SIZE	10 // fmax number of nodes available for a path.
 
 // These are caps bits to indicate what an object's capabilities (currently used for save/restore and level transitions)
 #define		FCAP_CUSTOMSAVE				0x00000001

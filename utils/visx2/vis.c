@@ -113,7 +113,7 @@ portal_t *GetNextPortal (void)
 {
 	int		j;
 	portal_t	*p, *tp;
-	int		min;
+	int		fmin;
 	int		i;
 
 	i = GetThreadWork ();	// bump the pacifier
@@ -122,14 +122,14 @@ portal_t *GetNextPortal (void)
 
 	ThreadLock();
 
-	min = 99999;
+	fmin = 99999;
 	p = NULL;
 	
 	for (j=0, tp = portals ; j<numportals*2 ; j++, tp++)
 	{
-		if (tp->nummightsee < min && tp->status == stat_none)
+		if (tp->nummightsee < fmin && tp->status == stat_none)
 		{
-			min = tp->nummightsee;
+			fmin = tp->nummightsee;
 			p = tp;
 		}
 	}

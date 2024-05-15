@@ -500,7 +500,7 @@ void SimplifyModel (void)
 
 	if (numbones >= MAXSTUDIOBONES)
 	{
-		Error( "Too many bones used in model, used %d, max %d\n", numbones, MAXSTUDIOBONES );
+		Error( "Too many bones used in model, used %d, fmax %d\n", numbones, MAXSTUDIOBONES );
 	}
 
 	// rename sequence bones if needed
@@ -573,7 +573,7 @@ void SimplifyModel (void)
 	{
 		for (j = 0; j < numbones; j++)
 		{
-			if (stricmp( bonecontroller[i].name, bonetable[j].name) == 0)
+			if (strcasecmp( bonecontroller[i].name, bonetable[j].name) == 0)
 				break;
 		}
 		if (j >= numbones)
@@ -588,7 +588,7 @@ void SimplifyModel (void)
 	{
 		for (j = 0; j < numbones; j++)
 		{
-			if (stricmp( attachment[i].bonename, bonetable[j].name) == 0)
+			if (strcasecmp( attachment[i].bonename, bonetable[j].name) == 0)
 				break;
 		}
 		if (j >= numbones)
@@ -1088,21 +1088,21 @@ void SimplifyModel (void)
 
 int lookupControl( char *string )
 {
-	if (stricmp(string,"X")==0) return STUDIO_X;
-	if (stricmp(string,"Y")==0) return STUDIO_Y;
-	if (stricmp(string,"Z")==0) return STUDIO_Z;
-	if (stricmp(string,"XR")==0) return STUDIO_XR;
-	if (stricmp(string,"YR")==0) return STUDIO_YR;
-	if (stricmp(string,"ZR")==0) return STUDIO_ZR;
-	if (stricmp(string,"LX")==0) return STUDIO_LX;
-	if (stricmp(string,"LY")==0) return STUDIO_LY;
-	if (stricmp(string,"LZ")==0) return STUDIO_LZ;
-	if (stricmp(string,"AX")==0) return STUDIO_AX;
-	if (stricmp(string,"AY")==0) return STUDIO_AY;
-	if (stricmp(string,"AZ")==0) return STUDIO_AZ;
-	if (stricmp(string,"AXR")==0) return STUDIO_AXR;
-	if (stricmp(string,"AYR")==0) return STUDIO_AYR;
-	if (stricmp(string,"AZR")==0) return STUDIO_AZR;
+	if (strcasecmp(string,"X")==0) return STUDIO_X;
+	if (strcasecmp(string,"Y")==0) return STUDIO_Y;
+	if (strcasecmp(string,"Z")==0) return STUDIO_Z;
+	if (strcasecmp(string,"XR")==0) return STUDIO_XR;
+	if (strcasecmp(string,"YR")==0) return STUDIO_YR;
+	if (strcasecmp(string,"ZR")==0) return STUDIO_ZR;
+	if (strcasecmp(string,"LX")==0) return STUDIO_LX;
+	if (strcasecmp(string,"LY")==0) return STUDIO_LY;
+	if (strcasecmp(string,"LZ")==0) return STUDIO_LZ;
+	if (strcasecmp(string,"AX")==0) return STUDIO_AX;
+	if (strcasecmp(string,"AY")==0) return STUDIO_AY;
+	if (strcasecmp(string,"AZ")==0) return STUDIO_AZ;
+	if (strcasecmp(string,"AXR")==0) return STUDIO_AXR;
+	if (strcasecmp(string,"AYR")==0) return STUDIO_AYR;
+	if (strcasecmp(string,"AZR")==0) return STUDIO_AZR;
 	return -1;
 }
 
@@ -1117,7 +1117,7 @@ char *stristr( const char *string, const char *string2 )
 	while (string) {
 		for (; *string && tolower( *string ) != c; string++);
 		if (*string) {
-			if (strnicmp( string, string2, len ) == 0) {
+			if (strncasecmp( string, string2, len ) == 0) {
 				break;
 			}
 			string++;
@@ -1140,7 +1140,7 @@ int lookup_texture( char *texturename )
 	int i;
 
 	for (i = 0; i < numtextures; i++) {
-		if (stricmp( texture[i].name, texturename ) == 0) {
+		if (strcasecmp( texture[i].name, texturename ) == 0) {
 			return i;
 		}
 	}
@@ -1330,8 +1330,8 @@ void TextureCoordRanges( s_mesh_t *pmesh, s_texture_t *ptexture  )
 			for (i=0 ; i<pmesh->numtris ; i++) 
 			{
 				float local_min, local_max;
-				local_min = min( pmesh->triangle[i][0].u, min( pmesh->triangle[i][1].u, pmesh->triangle[i][2].u ));
-				local_max = max( pmesh->triangle[i][0].u, max( pmesh->triangle[i][1].u, pmesh->triangle[i][2].u ));
+				local_min = fmin( pmesh->triangle[i][0].u, fmin( pmesh->triangle[i][1].u, pmesh->triangle[i][2].u ));
+				local_max = fmax( pmesh->triangle[i][0].u, fmax( pmesh->triangle[i][1].u, pmesh->triangle[i][2].u ));
 				if (local_min < min_u) { min_u = local_min; k = i; k_max_u = local_max; }
 				if (local_max > max_u) { max_u = local_max; n = i; n_min_u = local_min; }
 			}
@@ -1363,8 +1363,8 @@ void TextureCoordRanges( s_mesh_t *pmesh, s_texture_t *ptexture  )
 			for (i=0 ; i<pmesh->numtris ; i++) 
 			{
 				float local_min, local_max;
-				local_min = min( pmesh->triangle[i][0].v, min( pmesh->triangle[i][1].v, pmesh->triangle[i][2].v ));
-				local_max = max( pmesh->triangle[i][0].v, max( pmesh->triangle[i][1].v, pmesh->triangle[i][2].v ));
+				local_min = fmin( pmesh->triangle[i][0].v, fmin( pmesh->triangle[i][1].v, pmesh->triangle[i][2].v ));
+				local_max = fmax( pmesh->triangle[i][0].v, fmax( pmesh->triangle[i][1].v, pmesh->triangle[i][2].v ));
 				if (local_min < min_v) { min_v = local_min; k = i; k_max_v = local_max; }
 				if (local_max > max_v) { max_v = local_max; n = i; n_min_v = local_min; }
 			}
@@ -1414,9 +1414,9 @@ void TextureCoordRanges( s_mesh_t *pmesh, s_texture_t *ptexture  )
 	{
 		for (i=0 ; i<pmesh->numtris ; i++) {
 			for (j = 0; j < 3; j++) {
-				ptexture->max_s = max( pmesh->triangle[i][j].s, ptexture->max_s );
-				ptexture->min_s = min( pmesh->triangle[i][j].s, ptexture->min_s );
-				ptexture->max_t = max( pmesh->triangle[i][j].t, ptexture->max_t );
+				ptexture->max_s = fmax( pmesh->triangle[i][j].s, ptexture->max_s );
+				ptexture->min_s = fmin( pmesh->triangle[i][j].s, ptexture->min_s );
+				ptexture->max_t = fmax( pmesh->triangle[i][j].t, ptexture->max_t );
 				ptexture->min_t = min( pmesh->triangle[i][j].t, ptexture->min_t );
 			}
 		}
@@ -1604,7 +1604,7 @@ void Grab_Skin ( s_texture_t *ptexture )
 		sprintf (file1, "%s/%s", cddir, ptexture->name);
 	}
 	
-	if (stricmp( ".bmp", &file1[strlen(file1)-4]) == 0) {
+	if (strcasecmp( ".bmp", &file1[strlen(file1)-4]) == 0) {
 		Grab_BMP( file1, ptexture );
 	}
 	else {
@@ -1808,7 +1808,7 @@ void Grab_Triangles( s_model_t *pmodel )
 					strcpy( texturename, defaulttexture[i] );
 					break;
 				}
-				if (stricmp( texturename, sourcetexture[i]) == 0) 
+				if (strcasecmp( texturename, sourcetexture[i]) == 0)
 				{
 					strcpy( texturename, defaulttexture[i] );
 					break;
@@ -2192,11 +2192,11 @@ void Option_Studio( )
 	while (TokenAvailable())
 	{
 		GetToken(false);
-		if (stricmp( "reverse", token ) == 0)
+		if (strcasecmp( "reverse", token ) == 0)
 		{
 			flip_triangles = 0;
 		}
-		else if (stricmp( "scale", token ) == 0)
+		else if (strcasecmp( "scale", token ) == 0)
 		{
 			GetToken(false);
 			scale_up = atof( token );
@@ -2248,9 +2248,9 @@ void Cmd_Bodygroup( )
 			is_started = 1;
 		else if (token[0] == '}')
 			break;
-		else if (stricmp("studio", token ) == 0)
+		else if (strcasecmp("studio", token ) == 0)
 			Option_Studio( );
-		else if (stricmp("blank", token ) == 0)
+		else if (strcasecmp("blank", token ) == 0)
 			Option_Blank( );
 	} while (1);
 
@@ -2627,11 +2627,11 @@ int lookupActivity( char *szActivity )
 
 	for (i = 0; activity_map[i].name; i++)
 	{
-		if (stricmp( szActivity, activity_map[i].name ) == 0)
+		if (strcasecmp( szActivity, activity_map[i].name ) == 0)
 			return activity_map[i].type;
 	}
 	// match ACT_#
-	if (strnicmp( szActivity, "ACT_", 4 ) == 0)
+	if (strncasecmp( szActivity, "ACT_", 4 ) == 0)
 	{
 		return atoi( &szActivity[4] );
 	}
@@ -2691,54 +2691,54 @@ int Cmd_Sequence( )
 			}
 			return 1;
 		}
-		if (stricmp("{", token ) == 0)
+		if (strcasecmp("{", token ) == 0)
 		{
 			depth++;
 		}
-		else if (stricmp("}", token ) == 0)
+		else if (strcasecmp("}", token ) == 0)
 		{
 			depth--;
 		}
-		else if (stricmp("deform", token ) == 0)
+		else if (strcasecmp("deform", token ) == 0)
 		{
 			Option_Deform( &sequence[numseq] );
 		}
-		else if (stricmp("event", token ) == 0)
+		else if (strcasecmp("event", token ) == 0)
 		{
 			depth -= Option_Event( &sequence[numseq] );
 		}
-		else if (stricmp("pivot", token ) == 0)
+		else if (strcasecmp("pivot", token ) == 0)
 		{
 			Option_AddPivot( &sequence[numseq] );
 		}
-		else if (stricmp("fps", token ) == 0)
+		else if (strcasecmp("fps", token ) == 0)
 		{
 			Option_Fps( &sequence[numseq] );
 		}
-		else if (stricmp("origin", token ) == 0)
+		else if (strcasecmp("origin", token ) == 0)
 		{
 			Option_Origin( );
 		}
-		else if (stricmp("rotate", token ) == 0)
+		else if (strcasecmp("rotate", token ) == 0)
 		{
 			Option_Rotate( );
 		}
-		else if (stricmp("scale", token ) == 0)
+		else if (strcasecmp("scale", token ) == 0)
 		{
 			Option_ScaleUp( );
 		}
-		else if (strnicmp("loop", token, 4 ) == 0)
+		else if (strncasecmp("loop", token, 4 ) == 0)
 		{
 			sequence[numseq].flags |= STUDIO_LOOPING;
 		}
-		else if (strnicmp("frame", token, 5 ) == 0)
+		else if (strncasecmp("frame", token, 5 ) == 0)
 		{
 			GetToken( false );
 			start = atoi( token );
 			GetToken( false );
 			end = atoi( token );
 		}
-		else if (strnicmp("blend", token, 5 ) == 0)
+		else if (strncasecmp("blend", token, 5 ) == 0)
 		{
 			GetToken( false );
 			sequence[numseq].blendtype[0] = lookupControl( token );
@@ -2747,19 +2747,19 @@ int Cmd_Sequence( )
 			GetToken( false );
 			sequence[numseq].blendend[0] = atof( token );
 		}
-		else if (strnicmp("node", token, 4 ) == 0)
+		else if (strncasecmp("node", token, 4 ) == 0)
 		{
 			GetToken( false );
 			sequence[numseq].entrynode = sequence[numseq].exitnode = atoi( token );
 		}
-		else if (strnicmp("transition", token, 4 ) == 0)
+		else if (strncasecmp("transition", token, 4 ) == 0)
 		{
 			GetToken( false );
 			sequence[numseq].entrynode = atoi( token );
 			GetToken( false );
 			sequence[numseq].exitnode = atoi( token );
 		}
-		else if (strnicmp("rtransition", token, 4 ) == 0)
+		else if (strncasecmp("rtransition", token, 4 ) == 0)
 		{
 			GetToken( false );
 			sequence[numseq].entrynode = atoi( token );
@@ -2771,7 +2771,7 @@ int Cmd_Sequence( )
 		{
 			sequence[numseq].motiontype |= lookupControl( token );
 		}
-		else if (stricmp("animation", token ) == 0)
+		else if (strcasecmp("animation", token ) == 0)
 		{
 			GetToken(false);
 			strcpyn( smdfilename[numblends++], token );

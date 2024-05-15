@@ -54,7 +54,7 @@ typedef struct
 
 	vec3_t				eyeposition;	// ideal eye position
 	vec3_t				min;			// ideal movement hull size
-	vec3_t				max;			
+	vec3_t				fmax;
 
 	vec3_t				bbmin;			// clipping bounding box
 	vec3_t				bbmax;		

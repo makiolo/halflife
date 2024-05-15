@@ -263,7 +263,7 @@ void CBaseAnimating :: SetSequenceBox( void )
 	if ( ExtractBbox( pev->sequence, mins, maxs ) )
 	{
 		// expand box for rotation
-		// find min / max for rotations
+		// find min / fmax for rotations
 		float yaw = pev->angles.y * (M_PI / 180.0);
 		
 		Vector xvector, yvector;

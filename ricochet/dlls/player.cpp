@@ -2043,18 +2043,18 @@ void CBasePlayer::PreThink(void)
 	2) A new hit inflicting tbd restarts the tbd counter - each monster has an 8bit counter,
 		per damage type. The counter is decremented every second, so the maximum time 
 		an effect will last is 255/60 = 4.25 minutes.  Of course, staying within the radius
-		of a damaging effect like fire, nervegas, radiation will continually reset the counter to max.
+		of a damaging effect like fire, nervegas, radiation will continually reset the counter to fmax.
 
 	3) Every second that a tbd counter is running, the player takes damage.  The damage
 		is determined by the type of tdb.  
 			Paralyze		- 1/2 movement rate, 30 second duration.
-			Nervegas		- 5 points per second, 16 second duration = 80 points max dose.
-			Poison			- 2 points per second, 25 second duration = 50 points max dose.
-			Radiation		- 1 point per second, 50 second duration = 50 points max dose.
+			Nervegas		- 5 points per second, 16 second duration = 80 points fmax dose.
+			Poison			- 2 points per second, 25 second duration = 50 points fmax dose.
+			Radiation		- 1 point per second, 50 second duration = 50 points fmax dose.
 			Drown			- 5 points per second, 2 second duration.
-			Acid/Chemical	- 5 points per second, 10 second duration = 50 points max.
+			Acid/Chemical	- 5 points per second, 10 second duration = 50 points fmax.
 			Burn			- 10 points per second, 2 second duration.
-			Freeze			- 3 points per second, 10 second duration = 30 points max.
+			Freeze			- 3 points per second, 10 second duration = 30 points fmax.
 
 	4) Certain actions or countermeasures counteract the damaging effects of tbds:
 
@@ -2633,9 +2633,9 @@ void CBasePlayer::PostThink()
 	ItemPostFrame( );
 
 // check to see if player landed hard enough to make a sound
-// falling farther than half of the maximum safe distance, but not as far a max safe distance will
+// falling farther than half of the maximum safe distance, but not as far a fmax safe distance will
 // play a bootscrape sound, and no damage will be inflicted. Fallling a distance shorter than half
-// of maximum safe distance will make no sound. Falling farther than max safe distance will play a 
+// of maximum safe distance will make no sound. Falling farther than fmax safe distance will play a
 // fallpain sound, and damage will be inflicted based on how far the player fell
 
 	if ( (FBitSet(pev->flags, FL_ONGROUND)) && (pev->health > 0) && m_flFallVelocity >= PLAYER_FALL_PUNCH_THRESHHOLD )
@@ -2758,12 +2758,12 @@ pt_end:
 				
 				if ( gun && gun->UseDecrement() )
 				{
-					gun->m_flNextPrimaryAttack		= max( gun->m_flNextPrimaryAttack - gpGlobals->frametime, -1.0 );
-					gun->m_flNextSecondaryAttack	= max( gun->m_flNextSecondaryAttack - gpGlobals->frametime, -0.001 );
+					gun->m_flNextPrimaryAttack		= fmax( gun->m_flNextPrimaryAttack - gpGlobals->frametime, -1.0 );
+					gun->m_flNextSecondaryAttack	= fmax( gun->m_flNextSecondaryAttack - gpGlobals->frametime, -0.001 );
 
 					if ( gun->m_flTimeWeaponIdle != 1000 )
 					{
-						gun->m_flTimeWeaponIdle		= max( gun->m_flTimeWeaponIdle - gpGlobals->frametime, -0.001 );
+						gun->m_flTimeWeaponIdle		= fmax( gun->m_flTimeWeaponIdle - gpGlobals->frametime, -0.001 );
 					}
 				}
 
@@ -3944,7 +3944,7 @@ int CBasePlayer::GetAmmoIndex(const char *psz)
 		if ( !CBasePlayerItem::AmmoInfoArray[i].pszName )
 			continue;
 
-		if (stricmp( psz, CBasePlayerItem::AmmoInfoArray[i].pszName ) == 0)
+		if (strcasecmp( psz, CBasePlayerItem::AmmoInfoArray[i].pszName ) == 0)
 			return i;
 	}
 
@@ -3967,7 +3967,7 @@ void CBasePlayer::SendAmmoUpdate(void)
 			// send "Ammo" update message
 			MESSAGE_BEGIN( MSG_ONE, gmsgAmmoX, NULL, pev );
 				WRITE_BYTE( i );
-				WRITE_BYTE( max( min( m_rgAmmo[i], 254 ), 0 ) );  // clamp the value to one byte
+				WRITE_BYTE( fmax( min( m_rgAmmo[i], 254 ), 0 ) );  // clamp the value to one byte
 			MESSAGE_END();
 		}
 	}
@@ -4041,7 +4041,7 @@ void CBasePlayer :: UpdateClientData( void )
 
 	if (pev->health != m_iClientHealth)
 	{
-#define clamp( val, min, max ) ( ((val) > (max)) ? (max) : ( ((val) < (min)) ? (min) : (val) ) )
+#define clamp( val, min, fmax ) ( ((val) > (fmax)) ? (fmax) : ( ((val) < (min)) ? (min) : (val) ) )
 		int iHealth = clamp( pev->health, 0, 255 );  // make sure that no negative health values are sent
 		if ( pev->health > 0.0f && pev->health <= 1.0f )
 			iHealth = 1;

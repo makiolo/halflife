@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -33,7 +33,7 @@ public:
 	virtual void    setValue(int value);
 	virtual int     getValue();
 	virtual void    addIntChangeSignal(IntChangeSignal* s); 
-	virtual void    setRange(int min,int max);
+	virtual void    setRange(int min,int fmax);
 	virtual void    setRangeWindow(int rangeWindow);
 	virtual void    setRangeWindowEnabled(bool state);
 	virtual void    setSize(int wide,int tall);

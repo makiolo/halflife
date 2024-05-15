@@ -121,7 +121,7 @@ public:
 	virtual void SecondaryAttack( void );
 	virtual void Reload( void );
 
-	float GetActiveWeaponAmmoRatio( void ) const;			///< returns ratio of ammo left to max ammo (1 = full clip, 0 = empty)
+	float GetActiveWeaponAmmoRatio( void ) const;			///< returns ratio of ammo left to fmax ammo (1 = full clip, 0 = empty)
 	bool IsActiveWeaponClipEmpty( void ) const;				///< return true if active weapon has any empty clip
 	bool IsActiveWeaponOutOfAmmo( void ) const;				///< return true if active weapon has no ammo at all
 	bool IsActiveWeaponReloading( void ) const;				///< is the weapon in the middle of a reload

@@ -91,10 +91,10 @@ typedef struct entvars_s
 	int			viewmodel;		// player's viewmodel
 	int			weaponmodel;	// what other players see
 	
-	vec3_t		absmin;		// BB max translated to world coord
-	vec3_t		absmax;		// BB max translated to world coord
+	vec3_t		absmin;		// BB fmax translated to world coord
+	vec3_t		absmax;		// BB fmax translated to world coord
 	vec3_t		mins;		// local BB min
-	vec3_t		maxs;		// local BB max
+	vec3_t		maxs;		// local BB fmax
 	vec3_t		size;		// maxs - mins
 
 	float		ltime;

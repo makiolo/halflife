@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -171,9 +171,9 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 
 		char *token = SharedGetToken();
 
-		bool isDefault = (!stricmp( token, "Default" ));
-		bool isTemplate = (!stricmp( token, "Template" ));
-		bool isCustomSkin = (!stricmp( token, "Skin" ));
+		bool isDefault = (!strcasecmp( token, "Default" ));
+		bool isTemplate = (!strcasecmp( token, "Template" ));
+		bool isCustomSkin = (!strcasecmp( token, "Skin" ));
 
 		if ( isCustomSkin )
 		{
@@ -200,7 +200,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 				return;
 			}
 			token = SharedGetToken();
-			if (stricmp( "Model", token ))
+			if (strcasecmp( "Model", token ))
 			{
 				CONSOLE_ECHO( "Error parsing %s - expected 'Model'\n", filename );
 				FREE_FILE( dataPointer );
@@ -296,7 +296,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 				// find the given template name
 				for( BotProfileList::iterator iter = templateList.begin(); iter != templateList.end(); ++iter )
 				{
-					if (!stricmp( (*iter)->GetName(), token ))
+					if (!strcasecmp( (*iter)->GetName(), token ))
 					{
 						inherit = *iter;
 						break;
@@ -359,7 +359,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 			token = SharedGetToken();
 
 			// check for End delimiter
-			if (!stricmp( token, "End" ))
+			if (!strcasecmp( token, "End" ))
 				break;
 
 			// found attribute name - keep it
@@ -394,15 +394,15 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 			token = SharedGetToken();
 
 			// store value in appropriate attribute
-			if (!stricmp( "Aggression", attributeName ))
+			if (!strcasecmp( "Aggression", attributeName ))
 			{
 				profile->m_aggression = atof(token) / 100.0f;
 			}
-			else if (!stricmp( "Skill", attributeName ))
+			else if (!strcasecmp( "Skill", attributeName ))
 			{
 				profile->m_skill = atof(token) / 100.0f;
 			}
-			else if (!stricmp( "Skin", attributeName ))
+			else if (!strcasecmp( "Skin", attributeName ))
 			{
 				profile->m_skin = atoi(token);
 				if ( profile->m_skin == 0 )
@@ -411,23 +411,23 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 					profile->m_skin = GetCustomSkinIndex( token, filename );
 				}
 			}
-			else if (!stricmp( "Teamwork", attributeName ))
+			else if (!strcasecmp( "Teamwork", attributeName ))
 			{
 				profile->m_teamwork = atof(token) / 100.0f;
 			}
-			else if (!stricmp( "Cost", attributeName ))
+			else if (!strcasecmp( "Cost", attributeName ))
 			{
 				profile->m_cost = atoi(token);
 			}
-			else if (!stricmp( "VoicePitch", attributeName ))
+			else if (!strcasecmp( "VoicePitch", attributeName ))
 			{
 				profile->m_voicePitch = atoi(token);
 			}
-			else if (!stricmp( "VoiceBank", attributeName ))
+			else if (!strcasecmp( "VoiceBank", attributeName ))
 			{
 				profile->m_voiceBank = FindVoiceBankIndex( token );
 			}
-			else if (!stricmp( "WeaponPreference", attributeName ))
+			else if (!strcasecmp( "WeaponPreference", attributeName ))
 			{
 				// weapon preferences override parent prefs
 				if (isFirstWeaponPref)
@@ -436,7 +436,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 					profile->m_weaponPreferenceCount = 0;
 				}
 
-				if (!stricmp( token, "none" ))
+				if (!strcasecmp( token, "none" ))
 				{
 					profile->m_weaponPreferenceCount = 0;
 				}
@@ -448,7 +448,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 					}
 				}
 			}
-			else if (!stricmp( "ReactionTime", attributeName ))
+			else if (!strcasecmp( "ReactionTime", attributeName ))
 			{
 				profile->m_reactionTime = atof(token);
 
@@ -459,11 +459,11 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 #endif
 
 			}
-			else if (!stricmp( "AttackDelay", attributeName ))
+			else if (!strcasecmp( "AttackDelay", attributeName ))
 			{
 				profile->m_attackDelay = atof(token);
 			}
-			else if (!stricmp( "Difficulty", attributeName ))
+			else if (!strcasecmp( "Difficulty", attributeName ))
 			{
 				// override inheritance
 				profile->m_difficultyFlags = 0;
@@ -476,7 +476,7 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 						*c = '\000';
 
 					for( int i=0; i<NUM_DIFFICULTY_LEVELS; ++i )
-						if (!stricmp( BotDifficultyName[i], token ))
+						if (!strcasecmp( BotDifficultyName[i], token ))
 							profile->m_difficultyFlags |= (1 << i);
 
 					if (c == NULL)
@@ -485,13 +485,13 @@ void BotProfileManager::Init( const char *filename, unsigned int *checksum )
 					token = c+1;
 				}
 			}
-			else if (!stricmp( "Team", attributeName ))
+			else if (!strcasecmp( "Team", attributeName ))
 			{
-				if ( !stricmp( token, "T" ) )
+				if ( !strcasecmp( token, "T" ) )
 				{
 					profile->m_teams = BOT_TEAM_T;
 				}
-				else if ( !stricmp( token, "CT" ) )
+				else if ( !strcasecmp( token, "CT" ) )
 				{
 					profile->m_teams = BOT_TEAM_CT;
 				}
@@ -630,7 +630,7 @@ int BotProfileManager::GetCustomSkinIndex( const char *name, const char *filenam
 	{
 		if ( m_skins[i] )
 		{
-			if ( !stricmp( skinName, m_skins[i] ) )
+			if ( !strcasecmp( skinName, m_skins[i] ) )
 			{
 				return FirstCustomSkin + i;
 			}
@@ -651,7 +651,7 @@ int BotProfileManager::FindVoiceBankIndex( const char *filename )
 	VoiceBankList::const_iterator it;
 	for ( it = m_voiceBanks.begin(); it != m_voiceBanks.end(); ++it, ++index )
 	{
-		if ( !stricmp( filename, *it ) )
+		if ( !strcasecmp( filename, *it ) )
 		{
 			return index;
 		}

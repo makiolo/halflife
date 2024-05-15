@@ -1091,7 +1091,7 @@ static void FixupAngles( Vector &v )
 
 #define TRAIN_STARTPITCH	60
 #define TRAIN_MAXPITCH		200
-#define TRAIN_MAXSPEED		1000	// approx max speed for sound pitch calculation
+#define TRAIN_MAXSPEED		1000	// approx fmax speed for sound pitch calculation
 
 void CFuncTrackTrain :: StopSound( void )
 {

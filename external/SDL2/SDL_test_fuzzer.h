@@ -318,17 +318,17 @@ Sint64 SDLTest_RandomSint64BoundaryValue(Sint64 boundary1, Sint64 boundary2, SDL
 
 
 /**
- * Returns integer in range [min, max] (inclusive).
- * Min and max values can be negative values.
+ * Returns integer in range [min, fmax] (inclusive).
+ * Min and fmax values can be negative values.
  * If Max in smaller tham min, then the values are swapped.
- * Min and max are the same value, that value will be returned.
+ * Min and fmax are the same value, that value will be returned.
  *
  * \param min Minimum inclusive value of returned random number
- * \param max Maximum inclusive value of returned random number
+ * \param fmax Maximum inclusive value of returned random number
  *
  * \returns Generated random integer in range
  */
-Sint32 SDLTest_RandomIntegerInRange(Sint32 min, Sint32 max);
+Sint32 SDLTest_RandomIntegerInRange(Sint32 min, Sint32 fmax);
 
 
 /**

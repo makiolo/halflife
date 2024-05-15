@@ -750,7 +750,7 @@ bool CNavArea::SpliceEdit( CNavArea *other )
 	if (m_extent.lo.x > other->m_extent.hi.x)
 	{
 		// 'this' is east of 'other'
-		float top = max( m_extent.lo.y, other->m_extent.lo.y );
+		float top = fmax( m_extent.lo.y, other->m_extent.lo.y );
 		float bottom = min( m_extent.hi.y, other->m_extent.hi.y );
 
 		nw.x = other->m_extent.hi.x;
@@ -780,7 +780,7 @@ bool CNavArea::SpliceEdit( CNavArea *other )
 	else if (m_extent.hi.x < other->m_extent.lo.x)
 	{
 		// 'this' is west of 'other'
-		float top = max( m_extent.lo.y, other->m_extent.lo.y );
+		float top = fmax( m_extent.lo.y, other->m_extent.lo.y );
 		float bottom = min( m_extent.hi.y, other->m_extent.hi.y );
 
 		nw.x = m_extent.hi.x;
@@ -812,7 +812,7 @@ bool CNavArea::SpliceEdit( CNavArea *other )
 		if (m_extent.lo.y > other->m_extent.hi.y)
 		{
 			// 'this' is south of 'other'
-			float left = max( m_extent.lo.x, other->m_extent.lo.x );
+			float left = fmax( m_extent.lo.x, other->m_extent.lo.x );
 			float right = min( m_extent.hi.x, other->m_extent.hi.x );
 
 			nw.x = left;
@@ -842,7 +842,7 @@ bool CNavArea::SpliceEdit( CNavArea *other )
 		else if (m_extent.hi.y < other->m_extent.lo.y)
 		{
 			// 'this' is north of 'other'
-			float left = max( m_extent.lo.x, other->m_extent.lo.x );
+			float left = fmax( m_extent.lo.x, other->m_extent.lo.x );
 			float right = min( m_extent.hi.x, other->m_extent.hi.x );
 
 			nw.x = left;
@@ -2328,7 +2328,7 @@ void CNavArea::ComputePortal( const CNavArea *to, NavDirType dir, Vector *center
 		else
 			center->y = m_extent.hi.y;
 
-		float left = max( m_extent.lo.x, to->m_extent.lo.x );
+		float left = fmax( m_extent.lo.x, to->m_extent.lo.x );
 		float right = min( m_extent.hi.x, to->m_extent.hi.x );
 
 		// clamp to our extent in case areas are disjoint
@@ -2352,7 +2352,7 @@ void CNavArea::ComputePortal( const CNavArea *to, NavDirType dir, Vector *center
 		else
 			center->x = m_extent.hi.x;
 
-		float top = max( m_extent.lo.y, to->m_extent.lo.y );
+		float top = fmax( m_extent.lo.y, to->m_extent.lo.y );
 		float bottom = min( m_extent.hi.y, to->m_extent.hi.y );
 
 		// clamp to our extent in case areas are disjoint
@@ -2386,7 +2386,7 @@ void CNavArea::ComputeClosestPointInPortal( const CNavArea *to, NavDirType dir, 
 		else
 			closePos->y = m_extent.hi.y;
 
-		float left = max( m_extent.lo.x, to->m_extent.lo.x );
+		float left = fmax( m_extent.lo.x, to->m_extent.lo.x );
 		float right = min( m_extent.hi.x, to->m_extent.hi.x );
 
 		// clamp to our extent in case areas are disjoint
@@ -2420,7 +2420,7 @@ void CNavArea::ComputeClosestPointInPortal( const CNavArea *to, NavDirType dir, 
 		else
 			closePos->x = m_extent.hi.x;
 
-		float top = max( m_extent.lo.y, to->m_extent.lo.y );
+		float top = fmax( m_extent.lo.y, to->m_extent.lo.y );
 		float bottom = min( m_extent.hi.y, to->m_extent.hi.y );
 
 		// clamp to our extent in case areas are disjoint

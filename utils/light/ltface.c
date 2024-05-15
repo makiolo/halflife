@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//========= Copyright ï¿½ 1996-2002, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -646,9 +646,9 @@ void LightFace (int surfnum)
 #endif
 					if ( divisor > 1.0 )
 						VectorScale( total, 1/divisor, total );
-					total[0] = max(total[0],0.0);
-					total[1] = max(total[1],0.0);
-					total[2] = max(total[2],0.0);
+					total[0] = fmax(total[0],0.0);
+					total[1] = fmax(total[1],0.0);
+					total[2] = fmax(total[2],0.0);
 				}
 				else
 					VectorCopy( light[ c ], total );

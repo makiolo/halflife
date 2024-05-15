@@ -23,7 +23,7 @@ PM_SHARED_OBJDIR=$(DLL_OBJDIR)/pm_shared
 GAME_SHARED_OBJDIR=$(DLL_OBJDIR)/game_shared
 WPN_OBJ_DIR=$(DLL_OBJDIR)/wpn_shared
 
-BASE_CFLAGS=-Dstricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_vsnprintf=vsnprintf
+BASE_CFLAGS=-Dstrcasecmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_vsnprintf=vsnprintf
 
 #safe optimization
 CFLAGS=$(BASE_CFLAGS) -w -m486 -O1

@@ -62,8 +62,8 @@ typedef int BOOL;
 #define min(a,b)  (((a) < (b)) ? (a) : (b))
 #endif
 
-#ifndef max
-#define max(a,b)  (((a) > (b)) ? (a) : (b))
+#ifndef fmax
+#define fmax(a,b)  (((a) > (b)) ? (a) : (b))
 #endif
 
 #define itoa(a,b,c) sprintf(b, "%d", a) 
